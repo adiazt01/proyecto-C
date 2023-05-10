@@ -31,7 +31,7 @@ acciones para conducir al logro del objetivo general.
 - Diagrama de Flujo del algoritmo principal
 - Listado del código y Pantallas del programa
 - Conclusiones: Se derivan de los objetivos específicos: Que se hizo, que se logró. 11. Referencias: Todos los autores consultados.
--  
+
 ## Consideraciones generales
 - Puntualidad en la entrega
 - Se evaluará el proyecto si entrega el informe, en función del instrumentodeevaluación que incluye: Informe, defensa y software. (entregar digital del informe, códigos, video y el proyecto)
