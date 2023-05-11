@@ -3,16 +3,16 @@
 
 ## Se requiere que conforme un equipo de 3 personas, para el desarrollo de un programa en Lenguaje C, que realice la simulación de la atención al cliente en un banco, el programa debe permitir lo siguiente:
 
--1 Crear, consultar e imprimir registro de la cuenta del cliente. 
--2 Crear expediente del cliente, consultarlo e imprimirlo. 
--3 Mostrar los productos y los requisitos que ofrece el banco a sus clientes: Persona Natural y Persona Jurídica. 
--4 Generar cobros por servicio de la cuenta al cliente, consultar e imprimir
--5 Generar pagos en la cuenta: por transferencia, por pago móvil y efectivo, enbs odolares. 
--6 Generar un resumen de actividad semanal y mensual realizada en el banco. 
--7 Consultar e imprimir movimientos diarios, semanales y mensuales en el banco. 
--8 Crear, consultar e imprimir retiros diarios, semanales y mensuales en el banco, 
--9 Consultar e imprimir movimientos diarios, semanales y mensuales de una cuenta
--10 Crear, consultar e imprimir retiros diarios, semanales y mensuales de una cuenta. 
+- 1 Crear, consultar e imprimir registro de la cuenta del cliente. 
+- 2 Crear expediente del cliente, consultarlo e imprimirlo. 
+- 3 Mostrar los productos y los requisitos que ofrece el banco a sus clientes: Persona Natural y Persona Jurídica. 
+- 4 Generar cobros por servicio de la cuenta al cliente, consultar e imprimir
+- 5 Generar pagos en la cuenta: por transferencia, por pago móvil y efectivo, enbs odolares. 
+- 6 Generar un resumen de actividad semanal y mensual realizada en el banco. 
+- 7 Consultar e imprimir movimientos diarios, semanales y mensuales en el banco. 
+- 8 Crear, consultar e imprimir retiros diarios, semanales y mensuales en el banco, 
+- 9 Consultar e imprimir movimientos diarios, semanales y mensuales de una cuenta
+- 10 Crear, consultar e imprimir retiros diarios, semanales y mensuales de una cuenta. 
 
 ## Al momento de la entrega del proyecto debe enviarlo al correo de su sección:
 - Informe del proyecto: Valor 10 ptos
