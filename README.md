@@ -1,7 +1,7 @@
 # Proyecto C
 ## Fecha de entrega: 20/5/2023 - Ponderación: 25 puntos
 
-Se requiere que conforme un equipo de 3 personas, para el desarrollo de unprograma en Lenguaje C, que realice la simulación de la atención al cliente enunbanco, el programa debe permitir lo siguiente:
+Se requiere que conforme un equipo de 3 personas, para el desarrollo de un programa en Lenguaje C, que realice la simulación de la atención al cliente enunbanco, el programa debe permitir lo siguiente:
 
 - Crear, consultar e imprimir registro de la cuenta del cliente. 
 - Crear expediente del cliente, consultarlo e imprimirlo. 
