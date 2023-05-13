@@ -1,9 +1,29 @@
 #include <stdio.h>
 
+<<<<<<< HEAD
+=======
+struct cuentasBancarias
+{
+    /* Base */
+
+    char nombre[50];
+    char genero[50];
+    int fechaNacimiento;
+    int cedula;
+
+    /* expediente */
+    char direccion[50];
+    char correo[50];
+    char estatusCivil[50];
+    int telefono[50];
+    float patrimonio[50];
+}; 
+>>>>>>> 365496bc9e9052f8f13ea54a49cdaf5aae632a97
 
 
 int main()
 {
+
     /*
     Menu de nuestro programa, esta compuesto por un ciclo do-while que permitira
     poder usar todo el programa sin la necesidad de volver a iniciarlo y una seleccion
