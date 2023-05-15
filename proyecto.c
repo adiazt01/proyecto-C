@@ -52,7 +52,7 @@ int main()
         {
 
         case 1:
-            printf("\n1ra Opcion");
+            CuentaCliente();
             break;
         
         case 2:
@@ -94,6 +94,41 @@ int main()
     } while (opcionMenu < 9);
 
     return 0;
+}
+
+void CuentaCliente(void)
+{
+    /* Variables temporales */
+    int opcionMenuCuentaCliente = 0;
+    struct cuentasBancarias cuenta;
+
+    do
+    {
+        printf("\n--Menu Cliente--\n");
+        printf("\n1.1 Crearla");
+        printf("\n1.2 Consultarla e imprimirla\n");
+        printf("\nPor favor ingrese una opcion: ");
+        scanf("%i", &opcionMenuCuentaCliente);
+
+        switch (opcionMenuCuentaCliente)
+        {
+        case 1:
+            printf("\n--Creacion de usuario--\n");
+            printf("\nPor favor ingrese su cedula: ");
+            scanf("%i", &cuenta.cedula);
+            printf("\nPor favor ingrese su nombre: ");
+            scanf("%s", &cuenta.nombre);
+            printf("\nPor favor ingrese su fecha de nacimiento: ");
+            scanf("%i", &cuenta.fechaNacimiento);
+            printf("%i", cuenta.cedula);
+            break;
+        case 2:
+            break;
+        default:
+            printf("Opcion Invalida");
+            break;
+        }
+    } while (opcionMenuCuentaCliente < 2);
 }
 
 void productosRequisitos() 
