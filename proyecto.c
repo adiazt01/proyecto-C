@@ -17,8 +17,9 @@ struct cuentasBancarias
     int telefono[50];
     float patrimonio[50];
 }; 
->>>>>>> 365496bc9e9052f8f13ea54a49cdaf5aae632a97
 
+
+void productosRequisitos();
 
 int main()
 {
@@ -93,4 +94,35 @@ int main()
     } while (opcionMenu < 9);
 
     return 0;
+}
+
+void productosRequisitos() 
+{
+    printf("\nProductos que ofrecemos en BanLMEM:].\n");
+
+    printf("\nPERSONA NATURAL");
+    printf("\nProductos:");
+    printf("\n -Cuenta Corriente no remunerada.");
+    printf("\n -Tarjeta de Debito.");
+    printf("\n -Sistema en linea.\n");
+    printf("\nRequisitos:");
+    printf("\n -Mayoria de edad.");
+    printf("\n -Documento de identidad.");
+    printf("\n -Datos personales.");
+    printf("\n -Patrimonio minimo de x.\n");
+    
+    printf("\nPERSONA JURIDICA");
+    printf("\nProductos:");
+    printf("\n -Cuenta juridica corriente y Cuenta de moneda extranjera.");
+    printf("\n -Tarjeta de Debito y Credito.");
+    printf("\n -Tazas de interes minimas.");
+    printf("\n -Credito Comercial.");
+    printf("\n -Pago a proveedores.");
+    printf("\n -Pago de nominas.\n");
+    printf("\nRequisitos:");
+    printf("\n -Apertura de cuenta en oficinas fisicas.");
+    printf("\n -Copia de documentos de identidad de los representantes de la empresa.");
+    printf("\n -Registro de informacion fiscal (RIF).");
+    printf("\n -Balance del ultimo cierre economico de la empresa.");
+    printf("\n -Copia del documento constitutivo de la empresa.\n");
 }
