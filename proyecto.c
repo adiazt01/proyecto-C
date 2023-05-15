@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-<<<<<<< HEAD
-=======
+
 struct cuentasBancarias
 {
     /* Base */
@@ -34,7 +33,7 @@ int main()
     int opcionMenu = 0;
     do
     {
-        printf("\nBienvenido al sistema del BanLMEM. :]\n");
+        printf("\nBienvenido al sistema de BanLMEM:]\n");
         printf("\n--MENU--");
         printf("\n1. Cuenta Cliente.");
         printf("\n2. Expediente Cliente.");
@@ -58,19 +57,19 @@ int main()
         case 2:
             printf("\n2ra opcion");
             break;
-        
+
         case 3:
-            printf("\n3ra Opcion");
+            productosRequisitos();
             break;
-        
+
         case 4:
             printf("\n4ta Opcion");
             break;
-        
+
         case 5:
             printf("\n5ta Opcion");
             break;
-        
+
         case 6:
             printf("\n6ta Opcion");
             break;
@@ -91,7 +90,7 @@ int main()
             printf("\nLa opcion que introduzco no es valida, intentelo de nuevo.");
             break;
         }
-    } while (opcionMenu != 9);
+    } while (opcionMenu < 9);
 
     return 0;
 }
