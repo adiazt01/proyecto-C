@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdbool.h>
 
 struct cuentasBancarias
 {
@@ -16,21 +16,15 @@ struct cuentasBancarias
     char estatusCivil[50];
     int telefono[50];
     float patrimonio[50];
-}; 
-
+};
 
 void productosRequisitos();
+void CuentaCliente(void);
+void menuPagos(struct cuentasBancarias* cuenta);
+void pagos(struct cuentasBancarias* cuenta, float monto, bool esDolar);
 
 int main()
 {
-
-    /*
-    Menu de nuestro programa, esta compuesto por un ciclo do-while que permitira
-    poder usar todo el programa sin la necesidad de volver a iniciarlo y una seleccion
-    de tipo switch para poder ejecutar las proximas funciones de nuestro programa que
-    por ahora solo tiene un printf que sera proximamente remplazado por nuestras funcionesLMEM
-    */
-
     int opcionMenu = 0;
     do
     {
@@ -50,46 +44,36 @@ int main()
 
         switch (opcionMenu)
         {
-
-        case 1:
-            CuentaCliente();
-            break;
-        
-        case 2:
-            printf("\n2ra opcion");
-            break;
-
-        case 3:
-            productosRequisitos();
-            break;
-
-        case 4:
-            printf("\n4ta Opcion");
-            break;
-
-        case 5:
-            printf("\n5ta Opcion");
-            break;
-
-        case 6:
-            printf("\n6ta Opcion");
-            break;
-        
-        case 7:
-            printf("\n7ma Opcion");
-            break;
-        
-        case 8:
-            printf("\n8va Opcion");
-            break;
-        
-        case 9:
-            printf("\nSalir");
-            break;
-        
-        default:
-            printf("\nLa opcion que introduzco no es valida, intentelo de nuevo.");
-            break;
+            case 1:
+                CuentaCliente();
+                break;
+            case 2:
+                printf("\n2da opcion");
+                break;
+            case 3:
+                productosRequisitos();
+                break;
+            case 4:
+                printf("\n4ta Opcion");
+                break;
+            case 5:
+                printf("\n5ta Opcion");
+                break;
+            case 6:
+               menuPagos(&CuentaCliente);
+                break;
+            case 7:
+                printf("\n7ma Opcion");
+                break;
+            case 8:
+                printf("\n8va Opcion");
+                break;
+            case 9:
+                printf("\nSalir");
+                break;
+            default:
+                printf("\nLa opcion que introduzco no es valida, intentelo de nuevo.");
+                break;
         }
     } while (opcionMenu < 9);
 
@@ -98,7 +82,6 @@ int main()
 
 void CuentaCliente(void)
 {
-    /* Variables temporales */
     int opcionMenuCuentaCliente = 0;
     struct cuentasBancarias cuenta;
 
@@ -112,26 +95,26 @@ void CuentaCliente(void)
 
         switch (opcionMenuCuentaCliente)
         {
-        case 1:
-            printf("\n--Creacion de usuario--\n");
-            printf("\nPor favor ingrese su cedula: ");
-            scanf("%i", &cuenta.cedula);
-            printf("\nPor favor ingrese su nombre: ");
-            scanf("%s", &cuenta.nombre);
-            printf("\nPor favor ingrese su fecha de nacimiento: ");
-            scanf("%i", &cuenta.fechaNacimiento);
-            printf("%i", cuenta.cedula);
-            break;
-        case 2:
-            break;
-        default:
-            printf("Opcion Invalida");
-            break;
+            case 1:
+                printf("\n--Creacion de usuario--\n");
+                printf("\nPor favor ingrese su cedula: ");
+                scanf("%i", &cuenta.cedula);
+                printf("\nPor favor ingrese su nombre: ");
+                scanf("%s", cuenta.nombre);
+                printf("\nPor favor ingrese su fecha de nacimiento: ");
+                scanf("%i", &cuenta.fechaNacimiento);
+                printf("%i", cuenta.cedula);
+                break;
+            case 2:
+                break;
+            default:
+                printf("Opcion Invalida");
+                break;
         }
     } while (opcionMenuCuentaCliente < 2);
 }
 
-void productosRequisitos() 
+void productosRequisitos()
 {
     printf("\nProductos que ofrecemos en BanLMEM:].\n");
 
@@ -145,7 +128,7 @@ void productosRequisitos()
     printf("\n -Documento de identidad.");
     printf("\n -Datos personales.");
     printf("\n -Patrimonio minimo de x.\n");
-    
+
     printf("\nPERSONA JURIDICA");
     printf("\nProductos:");
     printf("\n -Cuenta juridica corriente y Cuenta de moneda extranjera.");
@@ -160,4 +143,92 @@ void productosRequisitos()
     printf("\n -Registro de informacion fiscal (RIF).");
     printf("\n -Balance del ultimo cierre economico de la empresa.");
     printf("\n -Copia del documento constitutivo de la empresa.\n");
+}
+
+void menuPagos(struct cuentasBancarias* cuenta)
+{
+    int opcionMenuPagos = 0;
+    float monto = 0.0;
+
+    printf("\n--Menu de Pagos--\n");
+    printf("\n1. Pago Movil (Bolivares)");
+    printf("\n2. Pago Movil (Dolares)");
+    printf("\n3. Transferencia (Bolivares)");
+    printf("\n4. Transferencia (Dolares)");
+    printf("\n5. Pago en Efectivo (Bolivares)");
+    printf("\n6. Pago en Efectivo (Dolares)");
+    printf("\nIngrese una opcion: ");
+    scanf("%i", &opcionMenuPagos);
+
+    switch (opcionMenuPagos)
+    {
+        case 1:
+            printf("\nIngrese el monto del pago en bolivares: ");
+            scanf("%f", &monto);
+            pagos(cuenta, monto, false);
+            break;
+        case 2:
+            printf("\nIngrese el monto del pago en dolares: ");
+            scanf("%f", &monto);
+            pagos(cuenta, monto, true);
+            break;
+        case 3:
+            printf("\nIngrese el monto de la transferencia en bolivares: ");
+            scanf("%f", &monto);
+            pagos(cuenta, monto, false);
+            break;
+        case 4:
+            printf("\nIngrese el monto de la transferencia en dolares: ");
+            scanf("%f", &monto);
+            pagos(cuenta, monto, true);
+            break;
+        case 5:
+            printf("\nIngrese el monto del pago en efectivo en bolivares: ");
+            scanf("%f", &monto);
+            pagos(cuenta, monto, false);
+            break;
+        case 6:
+            printf("\nIngrese el monto del pago en efectivo en dolares: ");
+            scanf("%f", &monto);
+            pagos(cuenta, monto, true);
+            break;
+        default:
+            printf("\nOpcion Invalida");
+            break;
+    }
+}
+
+void pagos(struct cuentasBancarias* cuenta, float monto, bool esDolar)
+{
+    // Verificar si el saldo es suficiente para el pago
+    if (esDolar)
+    {
+        if (monto > cuenta->patrimonio[0])
+        {
+            printf("\nSaldo insuficiente para el pago en dolares.");
+            return;
+        }
+    }
+    else
+    {
+        if (monto > cuenta->patrimonio[0])
+        {
+            printf("\nSaldo insuficiente para el pago en bolivares.");
+            return;
+        }
+    }
+
+    // Realizar el descuento del dinero
+    if (esDolar)
+    {
+        cuenta->patrimonio[0] -= monto;
+        printf("\nPago realizado en dolares: -$%.2f", monto);
+    }
+    else
+    {
+        cuenta->patrimonio[0] -= monto;
+        printf("\nPago realizado en bolivares: -Bs%.2f", monto);
+    }
+
+    printf("\nTransferencia realizada correctamente.");
 }
