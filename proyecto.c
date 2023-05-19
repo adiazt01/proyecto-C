@@ -1,5 +1,6 @@
 #include <stdio.h>
-
+#include <ctype.h>
+#include <stdbool.h>
 
 struct cuentasBancarias
 {
@@ -14,16 +15,17 @@ struct cuentasBancarias
     char direccion[50];
     char correo[50];
     char estatusCivil[50];
-    int telefono[50];
-    float patrimonio[50];
-}; 
+    char telefono[50];
+    float patrimonio;
+};
+struct cuentasBancarias cuenta;
 
-
+void CuentaCliente();
 void productosRequisitos();
 
 int main()
 {
-
+    cuenta.fechaNacimiento = 9999;
     /*
     Menu de nuestro programa, esta compuesto por un ciclo do-while que permitira
     poder usar todo el programa sin la necesidad de volver a iniciarlo y una seleccion
@@ -34,62 +36,83 @@ int main()
     int opcionMenu = 0;
     do
     {
-        printf("\nBienvenido al sistema de BanLMEM:]\n");
-        printf("\n--MENU--");
-        printf("\n1. Cuenta Cliente.");
-        printf("\n2. Expediente Cliente.");
-        printf("\n3. Productos y Requisitos.");
-        printf("\n4. Resumen de Actividad.");
-        printf("\n5. Cobros por Servicios.");
-        printf("\n6. Pagos.");
-        printf("\n7. Retiros.");
-        printf("\n8. Movimientos.");
-        printf("\n9. Salir del Sistema.\n");
-        printf("\nIngrese una opcion: ");
-        scanf("%i", &opcionMenu);
-
-        switch (opcionMenu)
+        if (cuenta.fechaNacimiento > 2005)
         {
+            printf("\nBienvenido al sistema de BanLMEM:]\n");
+            printf("\n--MENU--");
+            printf("\n1. Cuenta Cliente.");
+            printf("\n2. Salir del Sistema.\n");
+            printf("\nIngrese una opcion: ");
+            scanf("%i", &opcionMenu);
+            switch (opcionMenu)
+            {
+            case 1:
+                CuentaCliente();
+                break;
+            case 2:
+                printf("\nMuchas gracias por usar nuestros servicios\n");
+                break;
+            default:
+                printf("\nOpcion invalida\n");
+            }
+        }
+        else
+        {
+            printf("\nBienvenido al sistema de BanLMEM:]\n");
+            printf("\n--MENU--");
+            printf("\n1. Cuenta Cliente.");
+            printf("\n2. Expediente Cliente."); /*  */
+            printf("\n3. Productos y Requisitos.");
+            printf("\n4. Resumen de Actividad.");
+            printf("\n5. Cobros por Servicios.");
+            printf("\n6. Pagos.");
+            printf("\n7. Retiros.");
+            printf("\n8. Movimientos.");
+            printf("\n9. Salir del Sistema.\n");
+            printf("\nIngrese una opcion: ");
+            scanf("%i", &opcionMenu);
 
-        case 1:
-            CuentaCliente();
-            break;
-        
-        case 2:
-            printf("\n2ra opcion");
-            break;
+            switch (opcionMenu)
+            {
+            case 1:
+                CuentaCliente();
+                break;
+            case 2:
+                ExpedienteDelCliente();
+                break;
 
-        case 3:
-            productosRequisitos();
-            break;
+            case 3:
+                productosRequisitos();
+                break;
 
-        case 4:
-            printf("\n4ta Opcion");
-            break;
+            case 4:
+                printf("\n4ta Opcion");
+                break;
 
-        case 5:
-            printf("\n5ta Opcion");
-            break;
+            case 5:
+                printf("\n5ta Opcion");
+                break;
 
-        case 6:
-            printf("\n6ta Opcion");
-            break;
-        
-        case 7:
-            printf("\n7ma Opcion");
-            break;
-        
-        case 8:
-            printf("\n8va Opcion");
-            break;
-        
-        case 9:
-            printf("\nSalir");
-            break;
-        
-        default:
-            printf("\nLa opcion que introduzco no es valida, intentelo de nuevo.");
-            break;
+            case 6:
+                printf("\n6ta Opcion");
+                break;
+
+            case 7:
+                printf("\n7ma Opcion");
+                break;
+
+            case 8:
+                printf("\n8va Opcion");
+                break;
+
+            case 9:
+                printf("\nSalir");
+                break;
+
+            default:
+                printf("\nLa opcion que introduzco no es valida, intentelo de nuevo.");
+                break;
+            }
         }
     } while (opcionMenu < 9);
 
@@ -100,13 +123,13 @@ void CuentaCliente(void)
 {
     /* Variables temporales */
     int opcionMenuCuentaCliente = 0;
-    struct cuentasBancarias cuenta;
 
     do
     {
         printf("\n--Menu Cliente--\n");
         printf("\n1.1 Crearla");
-        printf("\n1.2 Consultarla e imprimirla\n");
+        printf("\n1.2 Consultarla e imprimirla");
+        printf("\n1.3 Salir\n");
         printf("\nPor favor ingrese una opcion: ");
         scanf("%i", &opcionMenuCuentaCliente);
 
@@ -120,18 +143,84 @@ void CuentaCliente(void)
             scanf("%s", &cuenta.nombre);
             printf("\nPor favor ingrese su fecha de nacimiento: ");
             scanf("%i", &cuenta.fechaNacimiento);
-            printf("%i", cuenta.cedula);
+            if (cuenta.fechaNacimiento > 2004)
+            {
+                printf("\nFallo en la creacion de la cuenta, usted deber ser mayor de edad\n");
+                cuenta.fechaNacimiento = 9999;
+                break;
+            }
             break;
         case 2:
+        if (cuenta.fechaNacimiento < 2005)
+        {
+            printf("\n--Consulta--\n");
+            printf("Cedula: %i\n", cuenta.cedula);
+            printf("Nombre: %s\n", cuenta.nombre);
+            printf("Año de nacimiento: %i\n", cuenta.fechaNacimiento);
+            break;
+        }
+        else{
+            printf("\nNo hay cliente registrado\n");
+        }
+        case 3:
+            printf("\nSaliendo...");
             break;
         default:
             printf("Opcion Invalida");
             break;
         }
-    } while (opcionMenuCuentaCliente < 2);
+    } while (opcionMenuCuentaCliente != 3);
 }
 
-void productosRequisitos() 
+void ExpedienteDelCliente()
+{
+    /* Variables temporales */
+    int opcionMenuCuentaCliente = 0;
+    struct cuentasBancarias cuenta;
+
+    do
+    {
+        printf("\n--Menu Cliente (Expediente)--\n");
+        printf("\n1.1 Crear expediente");
+        printf("\n1.2 Consultarla e imprimir expediente");
+        printf("\n1.3 salir\n");
+        printf("\nPor favor ingrese una opcion: ");
+        scanf("%i", &opcionMenuCuentaCliente);
+
+        switch (opcionMenuCuentaCliente)
+        {
+        case 1:
+            printf("\n--Creacion de expediente del usuario--\n");
+            printf("\nPor favor, ingrese su direccion: ");
+            scanf("%s", &cuenta.direccion);
+            printf("\nPor favor, ingrese su correo electronico: ");
+            scanf("%s", &cuenta.correo);
+            printf("\nPor favor, ingrese su numero telefonico: ");
+            scanf("%s", &cuenta.telefono);
+            printf("\nPor favor, ingrese su estatus civil: ");
+            scanf("%s", &cuenta.estatusCivil);
+            printf("\nPor favor, la cantidad inicial de dinero a agendar a su cuenta: ");
+            scanf("%f", &cuenta.patrimonio);
+            break;
+        case 2:
+            printf("\n--Consulta del expediente--\n");
+            printf("Direccion: %s\n", cuenta.direccion);
+            printf("Correo electronico: %s\n", cuenta.correo);
+            printf("Numero telefonico: %s\n", cuenta.telefono);
+            printf("Estatus civil: %s\n", cuenta.estatusCivil);
+            printf("Fondo inicial agregado:%.2fBs\n", cuenta.patrimonio);
+            break;
+        case 3:
+            printf("\nSaliendo...");
+            break;
+        default:
+            printf("\nOpcion Invalida");
+            break;
+        }
+    } while (opcionMenuCuentaCliente !=3);
+}
+
+void productosRequisitos()
 {
     printf("\nProductos que ofrecemos en BanLMEM:].\n");
 
@@ -145,7 +234,7 @@ void productosRequisitos()
     printf("\n -Documento de identidad.");
     printf("\n -Datos personales.");
     printf("\n -Patrimonio minimo de x.\n");
-    
+
     printf("\nPERSONA JURIDICA");
     printf("\nProductos:");
     printf("\n -Cuenta juridica corriente y Cuenta de moneda extranjera.");
