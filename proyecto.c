@@ -22,9 +22,10 @@ struct cuentasBancarias cuenta;
 
 void CuentaCliente();
 void productosRequisitos();
-void CuentaCliente(void);
-void menuPagos(struct cuentasBancarias* cuenta);
-void pagos(struct cuentasBancarias* cuenta, float monto, bool esDolar);
+void CuentaCliente();
+void ExpedienteDelCliente();
+void menuPagos();
+void pagos(float monto);
 
 int main()
 {
@@ -97,7 +98,7 @@ int main()
                 break;
 
             case 6:
-                printf("\n6ta Opcion");
+                menuPagos();
                 break;
 
             case 7:
@@ -122,7 +123,7 @@ int main()
     return 0;
 }
 
-void CuentaCliente(void)
+void CuentaCliente()
 {
     int opcionMenuCuentaCliente = 0;
 
@@ -176,10 +177,7 @@ void CuentaCliente(void)
 
 void ExpedienteDelCliente()
 {
-    /* Variables temporales */
     int opcionMenuCuentaCliente = 0;
-    struct cuentasBancarias cuenta;
-
     do
     {
         printf("\n--Menu Cliente (Expediente)--\n");
@@ -253,18 +251,15 @@ void productosRequisitos()
     printf("\n -Copia del documento constitutivo de la empresa.\n");
 }
 
-void menuPagos(struct cuentasBancarias* cuenta)
+void menuPagos()
 {
     int opcionMenuPagos = 0;
-    float monto = 0.0;
+    float monto;
 
     printf("\n--Menu de Pagos--\n");
     printf("\n1. Pago Movil (Bolivares)");
-    printf("\n2. Pago Movil (Dolares)");
-    printf("\n3. Transferencia (Bolivares)");
-    printf("\n4. Transferencia (Dolares)");
-    printf("\n5. Pago en Efectivo (Bolivares)");
-    printf("\n6. Pago en Efectivo (Dolares)");
+    printf("\n2. Transferencia (Bolivares)");
+    printf("\n3. Pago en Efectivo (Bolivares)");
     printf("\nIngrese una opcion: ");
     scanf("%i", &opcionMenuPagos);
 
@@ -273,32 +268,17 @@ void menuPagos(struct cuentasBancarias* cuenta)
         case 1:
             printf("\nIngrese el monto del pago en bolivares: ");
             scanf("%f", &monto);
-            pagos(cuenta, monto, false);
+            pagos(monto);
             break;
         case 2:
-            printf("\nIngrese el monto del pago en dolares: ");
-            scanf("%f", &monto);
-            pagos(cuenta, monto, true);
-            break;
-        case 3:
             printf("\nIngrese el monto de la transferencia en bolivares: ");
             scanf("%f", &monto);
-            pagos(cuenta, monto, false);
+            pagos(monto);
             break;
-        case 4:
-            printf("\nIngrese el monto de la transferencia en dolares: ");
-            scanf("%f", &monto);
-            pagos(cuenta, monto, true);
-            break;
-        case 5:
+        case 3:
             printf("\nIngrese el monto del pago en efectivo en bolivares: ");
             scanf("%f", &monto);
-            pagos(cuenta, monto, false);
-            break;
-        case 6:
-            printf("\nIngrese el monto del pago en efectivo en dolares: ");
-            scanf("%f", &monto);
-            pagos(cuenta, monto, true);
+            pagos(monto);
             break;
         default:
             printf("\nOpcion Invalida");
@@ -306,37 +286,13 @@ void menuPagos(struct cuentasBancarias* cuenta)
     }
 }
 
-void pagos(struct cuentasBancarias* cuenta, float monto, bool esDolar)
+void pagos(float monto)
 {
-    // Verificar si el saldo es suficiente para el pago
-    if (esDolar)
-    {
-        if (monto > cuenta->patrimonio[0])
-        {
-            printf("\nSaldo insuficiente para el pago en dolares.");
-            return;
-        }
+    if (monto > cuenta.patrimonio){
+        printf("\nMonto insuficiente para realizar dicho pago\n");
     }
-    else
-    {
-        if (monto > cuenta->patrimonio[0])
-        {
-            printf("\nSaldo insuficiente para el pago en bolivares.");
-            return;
-        }
+    else{
+        cuenta.patrimonio -= monto;
+        printf("\nPago realizado con exito!");
     }
-
-    // Realizar el descuento del dinero
-    if (esDolar)
-    {
-        cuenta->patrimonio[0] -= monto;
-        printf("\nPago realizado en dolares: -$%.2f", monto);
-    }
-    else
-    {
-        cuenta->patrimonio[0] -= monto;
-        printf("\nPago realizado en bolivares: -Bs%.2f", monto);
-    }
-
-    printf("\nTransferencia realizada correctamente.");
 }
