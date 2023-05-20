@@ -292,7 +292,7 @@ void resumenActividad()
             printf("\n[25/05/2003] Creacion de Cuenta Cliente: C.I: %i.", cuenta.cedula);
             printf("\n[23/05/2003] Creacion de Expediente Cliente: C.I: 6359458.");
             printf("\n[22/05/2003] Creacion de Cuenta Cliente: C.I: 6359458.");
-            printf("\n[22/05/2003] Solicitud de Tarjeta de Debito: C.I: 12698364.");
+            printf("\n[22/05/2003] Solicitud de Tarjeta de Debito: C.I: 12698364.\n");
             
             printf("\n_SEMANA [15/05/2023] a 21/05/2023]");
             printf("\n[19/05/2003] Creacion de Cuenta Juridica: R.I.F: 0036841287.");
@@ -300,7 +300,7 @@ void resumenActividad()
             printf("\n[18/05/2003] Creacion de Expediente Cliente: C.I: 17458514.");
             printf("\n[16/05/2003] Creacion de Cuenta Cliente: C.I: 20178348.");
             printf("\n[15/05/2003] Creacion de Cuenta Cliente: C.I: 17458514.");
-            printf("\n[15/05/2003] Creacion de Cuenta Cliente: C.I: 18659354.");
+            printf("\n[15/05/2003] Creacion de Cuenta Cliente: C.I: 18659354.\n");
 
             printf("\n_SEMANA [08/05/2023] a [14/05/2023]");
             printf("\n[13/05/2003] Creacion de Expediente Cliente: R.I.F: 11697364.");
