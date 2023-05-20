@@ -21,6 +21,7 @@ struct cuentasBancarias
 struct cuentasBancarias cuenta;
 
 void CuentaCliente();
+void ExpedienteDelCliente();
 void productosRequisitos();
 void CuentaCliente(void);
 void menuPagos(struct cuentasBancarias* cuenta);
@@ -174,6 +175,7 @@ void CuentaCliente(void)
     } while (opcionMenuCuentaCliente != 3);
 }
 
+
 void ExpedienteDelCliente()
 {
     /* Variables temporales */
@@ -251,6 +253,78 @@ void productosRequisitos()
     printf("\n -Registro de informacion fiscal (RIF).");
     printf("\n -Balance del ultimo cierre economico de la empresa.");
     printf("\n -Copia del documento constitutivo de la empresa.\n");
+}
+
+void resumenActividad()
+{
+    int resumenDeActividad = 0;
+
+    do
+    {
+        printf("\n__RESUMEN DE ACTIVIDAD BANCARIA__\n");
+        printf("\n1.1 Resumen Semanal.");
+        printf("\n1.2 Resumen Mensual.");
+        printf("\n1.3 Volver al menu principal.\n");
+        printf("\nPor favor ingrese una opcion: ");
+        scanf("%i", &resumenDeActividad);
+
+        switch (resumenDeActividad)
+        {
+        
+        case 1:
+            printf("\n__RESUMEN SEMANAL__\n");
+            printf("\n_[22/05/2023] al [28/05/2023]\n");
+        
+            printf("\n[25/05/2003] Creacion de Expediente Cliente: C.I: %i.", cuenta.cedula);
+            printf("\n[25/05/2003] Creacion de Cuenta Cliente: C.I: %i.\n", cuenta.cedula);           
+            printf("\n[23/05/2003] Creacion de Expediente Cliente: C.I: 6359458.\n");
+            printf("\n[22/05/2003] Creacion de Cuenta Cliente: C.I: 6359458.");
+            printf("\n[22/05/2003] Solicitud de Tarjeta de Debito: C.I: 12698364.");
+
+            break;
+        
+        case 2:
+            printf("\n__RESUMEN MENSUAL__");
+            printf("\n_[01/05/2023] al [31/05/2023]\n");
+
+            printf("\n_SEMANA [22/05/2023] a [28/05/2023]");
+            printf("\n[25/05/2003] Creacion de Expediente Cliente: C.I: %i.", cuenta.cedula);
+            printf("\n[25/05/2003] Creacion de Cuenta Cliente: C.I: %i.", cuenta.cedula);
+            printf("\n[23/05/2003] Creacion de Expediente Cliente: C.I: 6359458.");
+            printf("\n[22/05/2003] Creacion de Cuenta Cliente: C.I: 6359458.");
+            printf("\n[22/05/2003] Solicitud de Tarjeta de Debito: C.I: 12698364.");
+            
+            printf("\n_SEMANA [15/05/2023] a 21/05/2023]");
+            printf("\n[19/05/2003] Creacion de Cuenta Juridica: R.I.F: 0036841287.");
+            printf("\n[19/05/2003] Cierre de Cuenta Cliente: C.I: 18659354.");
+            printf("\n[18/05/2003] Creacion de Expediente Cliente: C.I: 17458514.");
+            printf("\n[16/05/2003] Creacion de Cuenta Cliente: C.I: 20178348.");
+            printf("\n[15/05/2003] Creacion de Cuenta Cliente: C.I: 17458514.");
+            printf("\n[15/05/2003] Creacion de Cuenta Cliente: C.I: 18659354.");
+
+            printf("\n_SEMANA [08/05/2023] a [14/05/2023]");
+            printf("\n[13/05/2003] Creacion de Expediente Cliente: R.I.F: 11697364.");
+            printf("\n[13/05/2003] Cierre de Cuenta Cliente: C.I: 28458731.");
+            printf("\n[12/05/2003] Creacion de Expediente Cliente: C.I: 22489123.");
+            
+            printf("\n_SEMANA [01/05/2023] a [07/05/2023]");
+            printf("\n[07/05/2003] Creacion de Expediente Juridico: R.I.F: 0254003964.");
+            printf("\n[05/05/2003] Creacion de Cuenta Cliente: C.I: 22489123.");
+            printf("\n[04/05/2003] Creacion de Cuenta Juridica: R.I.F: 0254003964.");
+            printf("\n[04/05/2003] Creacion de Cuenta Cliente: C.I: 11697364.");
+
+            break;
+        
+        case 3:
+            printf("\nSaliendo...");
+            break;
+        
+        default:
+            printf("\nOpcion Invalida");
+            break;
+        }
+    
+    }   while (resumenDeActividad !=3);
 }
 
 void menuPagos(struct cuentasBancarias* cuenta)
