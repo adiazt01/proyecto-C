@@ -23,7 +23,7 @@ Aplicación de Normas APA 7ma Edición
 - Introducción: Expresa la razón de ser del proyecto, es decir en que consiste el
 desarrollo del mismo, y contiene lo siguiente: 
 Desglose del proyecto a desarrollar resaltando la finalidad, importancia del tema, síntesis de la metodología empleada para resolverlo, conclusiones y recomendaciones, finalmente la descripción de la estructura general que tendrá el informe. 
-- Análisis crítico del proceso de atención del cliente en el banco, describir comoocurre y como este sistema puede mejorar la atención del mismo. 
+- Análisis crítico del proceso de atención del cliente en el banco, describir como ocurre y como este sistema puede mejorar la atención del mismo. 
 - Objetivo General: Constituye lo que se quiere alcanzar con la realización de estaactividad, recuerden uds van a desarrollar un programa.
 - Objetivos Específicos: Se desprenden del objetivo general, e implican todas las acciones para conducir al logro del objetivo general. 
 - Proceso de Instalación y Configuración de la Plataforma tecnológica, entorno gráfico y/o otras herramientas utilizadas: Indicar paso a paso, comose realizó la instalación y configuración del entorno utilizado. 

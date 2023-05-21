@@ -2,6 +2,8 @@
 #include <ctype.h>
 #include <stdbool.h>
 
+#define AÑO_ACTUAL
+
 struct cuentasBancarias
 {
     /* Base */
@@ -49,6 +51,8 @@ int main()
             printf("\n2. Salir del Sistema.\n");
             printf("\nIngrese una opcion: ");
             scanf("%i", &opcionMenu);
+            system("cls");
+
             switch (opcionMenu)
             {
             case 1:
@@ -76,6 +80,7 @@ int main()
             printf("\n9. Salir del Sistema.\n");
             printf("\nIngrese una opcion: ");
             scanf("%i", &opcionMenu);
+            system("cls");
 
             switch (opcionMenu)
             {
@@ -91,7 +96,7 @@ int main()
                 break;
 
             case 4:
-                printf("\n4ta Opcion");
+                resumenActividad();
                 break;
 
             case 5:
@@ -109,11 +114,9 @@ int main()
             case 8:
                 printf("\n8va Opcion");
                 break;
-
             case 9:
-                printf("\nSalir");
+                printf("\nMuchas gracias por usar nuestros servicios...");
                 break;
-
             default:
                 printf("\nLa opcion que introduzco no es valida, intentelo de nuevo.");
                 break;
@@ -136,7 +139,7 @@ void CuentaCliente()
         printf("\n1.3 Salir\n");
         printf("\nPor favor ingrese una opcion: ");
         scanf("%i", &opcionMenuCuentaCliente);
-
+        system("cls");
         switch (opcionMenuCuentaCliente)
         {
         case 1:
@@ -151,23 +154,29 @@ void CuentaCliente()
             {
                 printf("\nFallo en la creacion de la cuenta, usted deber ser mayor de edad\n");
                 cuenta.fechaNacimiento = 9999;
+                limpiarPausarConsola();
                 break;
             }
+            printf("\nCuenta creada exitosamente!\n");
+            limpiarPausarConsola();
             break;
         case 2:
-        if (cuenta.fechaNacimiento < 2005)
-        {
-            printf("\n--Consulta--\n");
-            printf("Cedula: %i\n", cuenta.cedula);
-            printf("Nombre: %s\n", cuenta.nombre);
-            printf("Año de nacimiento: %i\n", cuenta.fechaNacimiento);
-            break;
-        }
-        else{
-            printf("\nNo hay cliente registrado\n");
-        }
+            if (cuenta.fechaNacimiento < 2005)
+            {
+                printf("\n--Consulta--\n");
+                printf("Cedula: %i\n", cuenta.cedula);
+                printf("Nombre: %s\n", cuenta.nombre);
+                printf("Año de nacimiento: %i\n", cuenta.fechaNacimiento);
+                limpiarPausarConsola();
+                break;
+            }
+            else
+            {
+                printf("\nNo hay cliente registrado\n");
+                limpiarPausarConsola();
+            }
         case 3:
-            printf("\nSaliendo...");
+            system("cls");
             break;
         default:
             printf("Opcion Invalida");
@@ -175,7 +184,6 @@ void CuentaCliente()
         }
     } while (opcionMenuCuentaCliente != 3);
 }
-
 
 void ExpedienteDelCliente()
 {
@@ -188,6 +196,7 @@ void ExpedienteDelCliente()
         printf("\n1.3 salir\n");
         printf("\nPor favor ingrese una opcion: ");
         scanf("%i", &opcionMenuCuentaCliente);
+        system("cls");
 
         switch (opcionMenuCuentaCliente)
         {
@@ -203,6 +212,8 @@ void ExpedienteDelCliente()
             scanf("%s", &cuenta.estatusCivil);
             printf("\nPor favor, la cantidad inicial de dinero a agendar a su cuenta: ");
             scanf("%f", &cuenta.patrimonio);
+            printf("\nExpediente creado con exito!");
+            limpiarPausarConsola();
             break;
         case 2:
             printf("\n--Consulta del expediente--\n");
@@ -211,15 +222,18 @@ void ExpedienteDelCliente()
             printf("Numero telefonico: %s\n", cuenta.telefono);
             printf("Estatus civil: %s\n", cuenta.estatusCivil);
             printf("Fondo inicial agregado:%.2fBs\n", cuenta.patrimonio);
+            limpiarPausarConsola();
             break;
         case 3:
             printf("\nSaliendo...");
+            limpiarPausarConsola();
             break;
         default:
             printf("\nOpcion Invalida");
+            limpiarPausarConsola();
             break;
         }
-    } while (opcionMenuCuentaCliente !=3);
+    } while (opcionMenuCuentaCliente != 3);
 }
 
 void productosRequisitos()
@@ -251,6 +265,7 @@ void productosRequisitos()
     printf("\n -Registro de informacion fiscal (RIF).");
     printf("\n -Balance del ultimo cierre economico de la empresa.");
     printf("\n -Copia del documento constitutivo de la empresa.\n");
+    limpiarPausarConsola();
 }
 
 void resumenActividad()
@@ -265,22 +280,23 @@ void resumenActividad()
         printf("\n1.3 Volver al menu principal.\n");
         printf("\nPor favor ingrese una opcion: ");
         scanf("%i", &resumenDeActividad);
+        system("cls");
 
         switch (resumenDeActividad)
         {
-        
+
         case 1:
             printf("\n__RESUMEN SEMANAL__\n");
             printf("\n_[22/05/2023] al [28/05/2023]\n");
-        
+
             printf("\n[25/05/2003] Creacion de Expediente Cliente: C.I: %i.", cuenta.cedula);
-            printf("\n[25/05/2003] Creacion de Cuenta Cliente: C.I: %i.\n", cuenta.cedula);           
+            printf("\n[25/05/2003] Creacion de Cuenta Cliente: C.I: %i.\n", cuenta.cedula);
             printf("\n[23/05/2003] Creacion de Expediente Cliente: C.I: 6359458.\n");
             printf("\n[22/05/2003] Creacion de Cuenta Cliente: C.I: 6359458.");
             printf("\n[22/05/2003] Solicitud de Tarjeta de Debito: C.I: 12698364.");
-
+            limpiarPausarConsola();
             break;
-        
+
         case 2:
             printf("\n__RESUMEN MENSUAL__");
             printf("\n_[01/05/2023] al [31/05/2023]\n");
@@ -291,7 +307,7 @@ void resumenActividad()
             printf("\n[23/05/2003] Creacion de Expediente Cliente: C.I: 6359458.");
             printf("\n[22/05/2003] Creacion de Cuenta Cliente: C.I: 6359458.");
             printf("\n[22/05/2003] Solicitud de Tarjeta de Debito: C.I: 12698364.\n");
-            
+
             printf("\n_SEMANA [15/05/2023] a 21/05/2023]");
             printf("\n[19/05/2003] Creacion de Cuenta Juridica: R.I.F: 0036841287.");
             printf("\n[19/05/2003] Cierre de Cuenta Cliente: C.I: 18659354.");
@@ -304,69 +320,92 @@ void resumenActividad()
             printf("\n[13/05/2003] Creacion de Expediente Cliente: R.I.F: 11697364.");
             printf("\n[13/05/2003] Cierre de Cuenta Cliente: C.I: 28458731.");
             printf("\n[12/05/2003] Creacion de Expediente Cliente: C.I: 22489123.");
-            
+
             printf("\n_SEMANA [01/05/2023] a [07/05/2023]");
             printf("\n[07/05/2003] Creacion de Expediente Juridico: R.I.F: 0254003964.");
             printf("\n[05/05/2003] Creacion de Cuenta Cliente: C.I: 22489123.");
             printf("\n[04/05/2003] Creacion de Cuenta Juridica: R.I.F: 0254003964.");
             printf("\n[04/05/2003] Creacion de Cuenta Cliente: C.I: 11697364.");
+            limpiarPausarConsola();
+            break;
 
-            break;
-        
         case 3:
-            printf("\nSaliendo...");
+            system("cls");
             break;
-        
+
         default:
             printf("\nOpcion Invalida");
+            limpiarPausarConsola();
             break;
         }
-    
-    }   while (resumenDeActividad !=3);
+
+    } while (resumenDeActividad != 3);
 }
 
 void menuPagos()
 {
-    int opcionMenuPagos = 0;
+    int opcionMenuPagos;
     float monto;
-
-    printf("\n--Menu de Pagos--\n");
-    printf("\n1. Pago Movil (Bolivares)");
-    printf("\n2. Transferencia (Bolivares)");
-    printf("\n3. Pago en Efectivo (Bolivares)");
-    printf("\nIngrese una opcion: ");
-    scanf("%i", &opcionMenuPagos);
-
-    switch (opcionMenuPagos)
+    do
     {
+
+        printf("\n--Menu de Pagos--\n");
+        printf("\n1. Pago Movil");
+        printf("\n2. Transferencia");
+        printf("\n3. Pago en Efectivo");
+        printf("\n4. Salir\n");
+        printf("\nDinero: %.2f\nBsf", cuenta.patrimonio);
+        printf("\nIngrese una opcion: ");
+        scanf("%i", &opcionMenuPagos);
+        system("cls");
+
+        switch (opcionMenuPagos)
+        {
         case 1:
             printf("\nIngrese el monto del pago en bolivares: ");
             scanf("%f", &monto);
             pagos(monto);
+            limpiarPausarConsola();
             break;
         case 2:
             printf("\nIngrese el monto de la transferencia en bolivares: ");
             scanf("%f", &monto);
             pagos(monto);
+            limpiarPausarConsola();
             break;
         case 3:
             printf("\nIngrese el monto del pago en efectivo en bolivares: ");
             scanf("%f", &monto);
-            pagos(monto);
+            cuenta.patrimonio += monto;
+            printf("\nEfectivo ingresado correctamente!\n");
+            limpiarPausarConsola();
+            break;
+        case 4:
+            system("cls");
             break;
         default:
             printf("\nOpcion Invalida");
+            limpiarPausarConsola();
             break;
-    }
+        }
+    } while (opcionMenuPagos != 4);
 }
 
 void pagos(float monto)
 {
-    if (monto > cuenta.patrimonio){
+    if (monto > cuenta.patrimonio)
+    {
         printf("\nMonto insuficiente para realizar dicho pago\n");
     }
-    else{
+    else
+    {
         cuenta.patrimonio -= monto;
-        printf("\nPago realizado con exito!");
+        printf("\nPago realizado con exito!\n");
     }
+}
+
+void limpiarPausarConsola()
+{
+    system("pause");
+    system("cls");
 }
