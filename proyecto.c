@@ -432,27 +432,27 @@ void pagos(float monto)
 void consultarImprimirMovimientos() {
     int opcion;
 
-    printf("\n---- Menú de Consulta de Movimientos ----\n");
+    printf("\n---- Menu de Consulta de Movimientos ----\n");
     printf("1. Movimientos del banco\n");
     printf("2. Movimientos de la cuenta del cliente\n");
-    printf("Ingrese su opción: ");
+    printf("Ingrese su opcion: ");
     scanf("%d", &opcion);
 
     switch (opcion) {
         case 1:
-            printf("\n--Consulta e impresión de movimientos del banco--\n");
+            printf("\n--Consulta e impresion de movimientos del banco--\n");
             for (int i = 0; i < totalMovimientosBanco; i++) {
                 printf("Fecha: %s, Monto: %.2f\n", movimientosBanco[i].fecha, movimientosBanco[i].monto);
             }
             break;
         case 2:
-            printf("\n--Consulta e impresión de movimientos de la cuenta del cliente--\n");
+            printf("\n--Consulta e impresion de movimientos de la cuenta del cliente--\n");
             for (int i = 0; i < totalMovimientosCliente; i++) {
                 printf("Fecha: %s, Monto: %.2f\n", movimientosCliente[i].fecha, movimientosCliente[i].monto);
             }
             break;
         default:
-            printf("Opción inválida\n");
+            printf("Opcion invalida\n");
     }
 }
 
