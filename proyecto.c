@@ -3,6 +3,23 @@
 #include <stdbool.h>
 
 #define AÑO_ACTUAL
+#define MAX_MOVIMIENTOS 100
+
+struct movimientoBanco {
+    char fecha[50];
+    float monto;
+};
+
+struct movimientoCliente {
+    char fecha[50];
+    float monto;
+};
+
+struct movimientoBanco movimientosBanco[MAX_MOVIMIENTOS];
+int totalMovimientosBanco = 0;
+
+struct movimientoCliente movimientosCliente[MAX_MOVIMIENTOS];
+int totalMovimientosCliente = 0;
 
 struct cuentasBancarias
 {
@@ -112,7 +129,7 @@ int main()
                 break;
 
             case 8:
-                printf("\n8va Opcion");
+               consultarImprimirMovimientos();
                 break;
             case 9:
                 printf("\nMuchas gracias por usar nuestros servicios...");
@@ -401,8 +418,44 @@ void pagos(float monto)
     {
         cuenta.patrimonio -= monto;
         printf("\nPago realizado con exito!\n");
+          sprintf(movimientosBanco[totalMovimientosBanco].fecha, "Fecha actual"); // Reemplazar "Fecha actual" con la fecha actual en el formato deseado
+        movimientosBanco[totalMovimientosBanco].monto = monto;
+        totalMovimientosBanco++;
+
+        // Agregar movimiento a la cuenta del cliente
+        sprintf(movimientosCliente[totalMovimientosCliente].fecha, "Fecha actual"); // Reemplazar "Fecha actual" con la fecha actual en el formato deseado
+        movimientosCliente[totalMovimientosCliente].monto = monto;
+        totalMovimientosCliente++;
     }
 }
+
+void consultarImprimirMovimientos() {
+    int opcion;
+
+    printf("\n---- Menú de Consulta de Movimientos ----\n");
+    printf("1. Movimientos del banco\n");
+    printf("2. Movimientos de la cuenta del cliente\n");
+    printf("Ingrese su opción: ");
+    scanf("%d", &opcion);
+
+    switch (opcion) {
+        case 1:
+            printf("\n--Consulta e impresión de movimientos del banco--\n");
+            for (int i = 0; i < totalMovimientosBanco; i++) {
+                printf("Fecha: %s, Monto: %.2f\n", movimientosBanco[i].fecha, movimientosBanco[i].monto);
+            }
+            break;
+        case 2:
+            printf("\n--Consulta e impresión de movimientos de la cuenta del cliente--\n");
+            for (int i = 0; i < totalMovimientosCliente; i++) {
+                printf("Fecha: %s, Monto: %.2f\n", movimientosCliente[i].fecha, movimientosCliente[i].monto);
+            }
+            break;
+        default:
+            printf("Opción inválida\n");
+    }
+}
+
 
 void limpiarPausarConsola()
 {
