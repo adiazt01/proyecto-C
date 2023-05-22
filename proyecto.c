@@ -3,7 +3,6 @@
 #include <stdbool.h>
 #define MAX_MOVIMIENTOS 100
 
-
 struct cuentasBancarias
 {
     /* Base */
@@ -20,18 +19,21 @@ struct cuentasBancarias
     char telefono[50];
     float patrimonio;
 };
+
+struct movimientoBanco 
+{
+    char fecha[50];
+    float monto;
+};
+
+struct movimientoCliente 
+{
+    char fecha[50];
+    float monto;
+};
+
+
 struct cuentasBancarias cuenta;
-
-
-struct movimientoBanco {
-    char fecha[50];
-    float monto;
-};
-
-struct movimientoCliente {
-    char fecha[50];
-    float monto;
-};
 
 struct movimientoBanco movimientosBanco[MAX_MOVIMIENTOS];
 int totalMovimientosBanco = 0;
@@ -40,23 +42,18 @@ struct movimientoCliente movimientosCliente[MAX_MOVIMIENTOS];
 int totalMovimientosCliente = 0;
 
 void cuentaCliente();
-void ExpedienteDelCliente();
+void expedienteDelCliente();
 void productosRequisitos();
 void resumenActividad();
 void servicios();
 void menuPagos();
-void retiros();
 void pagos(float monto);
+void retiros();
+void consultarImprimirMovimientos();
 
 int main()
 {
     cuenta.fechaNacimiento = 9999;
-    /*
-    Menu de nuestro programa, esta compuesto por un ciclo do-while que permitira
-    poder usar todo el programa sin la necesidad de volver a iniciarlo y una seleccion
-    de tipo switch para poder ejecutar las proximas funciones de nuestro programa que
-    por ahora solo tiene un printf que sera proximamente remplazado por nuestras funcionesLMEM
-    */
 
     int opcionMenu = 0;
     do
@@ -103,7 +100,7 @@ int main()
                 cuentaCliente();
                 break;
             case 2:
-                ExpedienteDelCliente();
+                expedienteDelCliente();
                 break;
 
             case 3:
@@ -111,7 +108,7 @@ int main()
                 break;
 
             case 4:
-                printf("\n4ta Opcion");
+                resumenActividad();
                 break;
 
             case 5:
@@ -127,7 +124,7 @@ int main()
                 break;
 
             case 8:
-                printf("\n8va Opcion");
+                consultarImprimirMovimientos();
                 break;
 
             case 9:
@@ -140,9 +137,10 @@ int main()
             }
         }
     } while (opcionMenu < 9);
-
+    
     return 0;
 }
+
 
 void cuentaCliente()
 {
@@ -174,21 +172,25 @@ void cuentaCliente()
                 break;
             }
             break;
+        
         case 2:
-        if (cuenta.fechaNacimiento < 2005)
-        {
+            if (cuenta.fechaNacimiento < 2005)
+            {
             printf("\n--Consulta--\n");
             printf("Cedula: %i\n", cuenta.cedula);
             printf("Nombre: %s\n", cuenta.nombre);
             printf("Año de nacimiento: %i\n", cuenta.fechaNacimiento);
             break;
-        }
-        else{
+            }
+            else
+            {
             printf("\nNo hay cliente registrado\n");
-        }
+            }
+        
         case 3:
             printf("\nSaliendo...");
             break;
+        
         default:
             printf("Opcion Invalida");
             break;
@@ -197,9 +199,10 @@ void cuentaCliente()
 }
 
 
-void ExpedienteDelCliente()
+void expedienteDelCliente()
 {
     int opcionMenuCuentaCliente = 0;
+    
     do
     {
         printf("\n--Menu Cliente (Expediente)--\n");
@@ -222,8 +225,9 @@ void ExpedienteDelCliente()
             printf("\nPor favor, ingrese su estatus civil: ");
             scanf("%s", &cuenta.estatusCivil);
             printf("\nPor favor, la cantidad inicial de dinero a agendar a su cuenta: ");
-            scanf("%f", &cuenta.patrimonio);
+            scanf("%f", &cuenta.patrimonio);           
             break;
+        
         case 2:
             printf("\n--Consulta del expediente--\n");
             printf("Direccion: %s\n", cuenta.direccion);
@@ -232,15 +236,18 @@ void ExpedienteDelCliente()
             printf("Estatus civil: %s\n", cuenta.estatusCivil);
             printf("Fondo inicial agregado:%.2fBs\n", cuenta.patrimonio);
             break;
+        
         case 3:
             printf("\nSaliendo...");
             break;
+        
         default:
             printf("\nOpcion Invalida");
             break;
         }
     } while (opcionMenuCuentaCliente !=3);
 }
+
 
 void productosRequisitos()
 {
@@ -273,6 +280,7 @@ void productosRequisitos()
     printf("\n -Copia del documento constitutivo de la empresa.\n");
 }
 
+
 void resumenActividad()
 {
     int resumenDeActividad = 0;
@@ -287,8 +295,7 @@ void resumenActividad()
         scanf("%i", &resumenDeActividad);
 
         switch (resumenDeActividad)
-        {
-        
+        {        
         case 1:
             printf("\n__RESUMEN SEMANAL__\n");
             printf("\n_[22/05/2023] al [28/05/2023]\n");
@@ -297,8 +304,7 @@ void resumenActividad()
             printf("\n[25/05/2003] Creacion de Cuenta Cliente: C.I: %i.\n", cuenta.cedula);           
             printf("\n[23/05/2003] Creacion de Expediente Cliente: C.I: 6359458.\n");
             printf("\n[22/05/2003] Creacion de Cuenta Cliente: C.I: 6359458.");
-            printf("\n[22/05/2003] Solicitud de Tarjeta de Debito: C.I: 12698364.");
-
+            printf("\n[22/05/2003] Solicitud de Tarjeta de Debito: C.I: 12698364.\n");
             break;
         
         case 2:
@@ -323,14 +329,13 @@ void resumenActividad()
             printf("\n_SEMANA [08/05/2023] a [14/05/2023]");
             printf("\n[13/05/2003] Creacion de Expediente Cliente: R.I.F: 11697364.");
             printf("\n[13/05/2003] Cierre de Cuenta Cliente: C.I: 28458731.");
-            printf("\n[12/05/2003] Creacion de Expediente Cliente: C.I: 22489123.");
+            printf("\n[12/05/2003] Creacion de Expediente Cliente: C.I: 22489123.\n");
             
             printf("\n_SEMANA [01/05/2023] a [07/05/2023]");
             printf("\n[07/05/2003] Creacion de Expediente Juridico: R.I.F: 0254003964.");
             printf("\n[05/05/2003] Creacion de Cuenta Cliente: C.I: 22489123.");
             printf("\n[04/05/2003] Creacion de Cuenta Juridica: R.I.F: 0254003964.");
-            printf("\n[04/05/2003] Creacion de Cuenta Cliente: C.I: 11697364.");
-
+            printf("\n[04/05/2003] Creacion de Cuenta Cliente: C.I: 11697364.\n");
             break;
         
         case 3:
@@ -344,6 +349,7 @@ void resumenActividad()
     
     }   while (resumenDeActividad !=3);
 }
+
 
 void menuPagos()
 {
@@ -364,59 +370,39 @@ void menuPagos()
             scanf("%f", &monto);
             pagos(monto);
             break;
+        
         case 2:
             printf("\nIngrese el monto de la transferencia en bolivares: ");
             scanf("%f", &monto);
             pagos(monto);
             break;
+        
         case 3:
             printf("\nIngrese el monto del pago en efectivo en bolivares: ");
             scanf("%f", &monto);
             pagos(monto);
             break;
+        
         default:
             printf("\nOpcion Invalida");
             break;
     }
 }
 
+
 void pagos(float monto)
 {
-    if (monto > cuenta.patrimonio){
+    if (monto > cuenta.patrimonio)
+    {
         printf("\nMonto insuficiente para realizar dicho pago\n");
     }
-    else{
+    else
+    {
         cuenta.patrimonio -= monto;
         printf("\nPago realizado con exito!");
     }
 }
 
-void consultarImprimirMovimientos() {
-    int opcion;
-
-    printf("\n---- Menú de Consulta de Movimientos ----\n");
-    printf("1. Movimientos del banco\n");
-    printf("2. Movimientos de la cuenta del cliente\n");
-    printf("Ingrese su opción: ");
-    scanf("%d", &opcion);
-
-    switch (opcion) {
-        case 1:
-            printf("\n--Consulta e impresión de movimientos del banco--\n");
-            for (int i = 0; i < totalMovimientosBanco; i++) {
-                printf("Fecha: %s, Monto: %.2f\n", movimientosBanco[i].fecha, movimientosBanco[i].monto);
-            }
-            break;
-        case 2:
-            printf("\n--Consulta e impresión de movimientos de la cuenta del cliente--\n");
-            for (int i = 0; i < totalMovimientosCliente; i++) {
-                printf("Fecha: %s, Monto: %.2f\n", movimientosCliente[i].fecha, movimientosCliente[i].monto);
-            }
-            break;
-        default:
-            printf("Opción inválida\n");
-    }
-}
 
 void servicios()
 {
@@ -436,8 +422,7 @@ void servicios()
         scanf("%i", &serviciosCobros);
 
         switch (serviciosCobros)
-        {
-        
+        {       
         case 1:
             printf("\n__RENTA TELEFONICA__\n");
 
@@ -456,7 +441,8 @@ void servicios()
                 {
                 printf("\nMonto insuficiente para realizar la recarga.\n");
                 }
-                else{
+                else
+                {
                 cuenta.patrimonio -= monto;
                 printf("\nRECARGA DE: %.2f", monto);
                 printf("\nNUMERO TELEFONICO: %s", telefono);
@@ -483,7 +469,8 @@ void servicios()
                 {
                 printf("\nMonto insuficiente para realizar el pago.\n");
                 }
-                else{
+                else
+                {
                 cuenta.patrimonio -= monto;
                 printf("\nPAGO DE AGUA DE: %.2f", monto);
                 printf("\nNUMERO DE CEDULA ASOCIADO: %i", cedula);
@@ -606,3 +593,36 @@ void retiros()
     }   while (retirosCuenta !=3);
 }
 
+void consultarImprimirMovimientos() 
+{
+    int opcion;
+
+    printf("\n---- Menú de Consulta de Movimientos ----\n");
+    printf("1. Movimientos del banco\n");
+    printf("2. Movimientos de la cuenta del cliente\n");
+    printf("Ingrese su opción: ");
+    scanf("%d", &opcion);
+
+    switch (opcion) {
+        case 1:
+            printf("\n--Consulta e impresión de movimientos del banco--\n");
+            
+            for (int i = 0; i < totalMovimientosBanco; i++) 
+            {
+                printf("Fecha: %s, Monto: %.2f\n", movimientosBanco[i].fecha, movimientosBanco[i].monto);
+            }
+            break;
+        
+        case 2:
+            printf("\n--Consulta e impresión de movimientos de la cuenta del cliente--\n");
+            
+            for (int i = 0; i < totalMovimientosCliente; i++) 
+            {
+                printf("Fecha: %s, Monto: %.2f\n", movimientosCliente[i].fecha, movimientosCliente[i].monto);
+            }
+            break;
+        
+        default:
+            printf("Opción inválida\n");
+    }
+}
