@@ -8,12 +8,14 @@ struct cuentasBancarias
     /* Base */
 
     char nombre[50];
+    char apellido[50];
     char genero[50];
+    int diaNacimiento;
+    int mesNacimiento;
     int fechaNacimiento;
     int cedula;
 
     /* expediente */
-    char direccion[50];
     char correo[50];
     char estatusCivil[50];
     char telefono[50];
@@ -61,10 +63,10 @@ int main()
         if (cuenta.fechaNacimiento > 2005)
         {
             printf("\nBienvenido al sistema de BanLMEM:]\n");
-            printf("\n--MENU--");
+            printf("\n___MENU PRINCIPAL___");
             printf("\n1. Cuenta Cliente.");
             printf("\n2. Salir del Sistema.\n");
-            printf("\nIngrese una opcion: ");
+            printf("\nPor favor, ingrese una opcion: ");
             scanf("%i", &opcionMenu);
             switch (opcionMenu)
             {
@@ -72,7 +74,8 @@ int main()
                 cuentaCliente();
                 break;
             case 2:
-                printf("\nMuchas gracias por usar nuestros servicios\n");
+                printf("\nMuchas gracias por usar los servicios de de BanLMEM:].");
+                printf("\nSaliendo del sistema...\n");
                 break;
             default:
                 printf("\nOpcion invalida\n");
@@ -81,17 +84,17 @@ int main()
         else
         {
             printf("\nBienvenido al sistema de BanLMEM:]\n");
-            printf("\n--MENU--");
-            printf("\n1. Cuenta Cliente.");
-            printf("\n2. Expediente Cliente."); /*  */
-            printf("\n3. Productos y Requisitos.");
-            printf("\n4. Resumen de Actividad.");
-            printf("\n5. Servicios.");
-            printf("\n6. Pagos.");
-            printf("\n7. Retiros.");
-            printf("\n8. Movimientos.");
-            printf("\n9. Salir del Sistema.\n");
-            printf("\nIngrese una opcion: ");
+            printf("\n___MENU PRINCIPAL___");
+            printf("\n1.- Cuenta Cliente.");
+            printf("\n2.- Expediente Cliente."); 
+            printf("\n3.- Productos y Requisitos.");
+            printf("\n4.- Resumen de Actividad.");
+            printf("\n5.- Servicios.");
+            printf("\n6.- Pagos.");
+            printf("\n7.- Retiros.");
+            printf("\n8.- Movimientos.");
+            printf("\n9.- Salir del Sistema.\n");
+            printf("\nPor favor, ingrese una opcion: ");
             scanf("%i", &opcionMenu);
 
             switch (opcionMenu)
@@ -128,11 +131,12 @@ int main()
                 break;
 
             case 9:
-                printf("\nSalir");
+                printf("\nMuchas gracias por usar los servicios de de BanLMEM:].");
+                printf("\nSaliendo del sistema...\n");
                 break;
 
             default:
-                printf("\nLa opcion que introduzco no es valida, intentelo de nuevo.");
+                printf("\nLa opcion que introducida no es valida, intentelo de nuevo.");
                 break;
             }
         }
@@ -148,26 +152,32 @@ void cuentaCliente()
 
     do
     {
-        printf("\n--Menu Cliente--\n");
-        printf("\n1.1 Crearla");
-        printf("\n1.2 Consultarla e imprimirla");
-        printf("\n1.3 Salir\n");
-        printf("\nPor favor ingrese una opcion: ");
+        printf("\n__CUENTA CLIENTE__\n");
+        printf("\n1. Crear cuenta.");
+        printf("\n2. Consultar e imprimir cuenta.");
+        printf("\n3. Volver al menu principal.\n");
+        printf("\nPor favor, ingrese una opcion: ");
         scanf("%i", &opcionMenuCuentaCliente);
 
         switch (opcionMenuCuentaCliente)
         {
         case 1:
-            printf("\n--Creacion de usuario--\n");
-            printf("\nPor favor ingrese su cedula: ");
+            printf("\n_CREAR CUENTA_");
+            printf("\nIngrese su cedula: ");
             scanf("%i", &cuenta.cedula);
-            printf("\nPor favor ingrese su nombre: ");
+            printf("\nIngrese su primer nombre: ");
             scanf("%s", &cuenta.nombre);
-            printf("\nPor favor ingrese su fecha de nacimiento: ");
+            printf("\nIngrese su primer apellido: ");
+            scanf("%s", &cuenta.apellido);
+            printf("\nIngrese su dia de nacimiento (##): ");
+            scanf("%i", &cuenta.diaNacimiento);
+            printf("\nIngrese su mes de nacimiento (##): ");
+            scanf("%i", &cuenta.diaNacimiento);
+            printf("\nIngrese su año de nacimiento (####): ");
             scanf("%i", &cuenta.fechaNacimiento);
             if (cuenta.fechaNacimiento > 2004)
             {
-                printf("\nFallo en la creacion de la cuenta, usted deber ser mayor de edad\n");
+                printf("\nFallo en la creacion de la cuenta, usted deber ser mayor de edad.\n");
                 cuenta.fechaNacimiento = 9999;
                 break;
             }
@@ -176,23 +186,23 @@ void cuentaCliente()
         case 2:
             if (cuenta.fechaNacimiento < 2005)
             {
-            printf("\n--Consulta--\n");
-            printf("Cedula: %i\n", cuenta.cedula);
-            printf("Nombre: %s\n", cuenta.nombre);
-            printf("Año de nacimiento: %i\n", cuenta.fechaNacimiento);
+            printf("\n_CONSULTA CUENTA_\n");
+            printf("\nCedula: %i.", cuenta.cedula);
+            printf("\nNombre Completo: %s %s.", cuenta.nombre, cuenta.apellido);
+            printf("\nFecha de nacimiento: %i/%i/%i.\n", cuenta.diaNacimiento, cuenta.mesNacimiento, cuenta.fechaNacimiento);
             break;
             }
             else
             {
-            printf("\nNo hay cliente registrado\n");
+            printf("\nAun no ha registrado un cliente en nuestros sistemas.\n");
             }
-        
+
         case 3:
-            printf("\nSaliendo...");
+            printf("\nVolviendo al menu principal...\n");
             break;
         
         default:
-            printf("Opcion Invalida");
+            printf("\nLa opcion introducida no es valida, intentelo de nuevo.");
             break;
         }
     } while (opcionMenuCuentaCliente != 3);
@@ -205,44 +215,40 @@ void expedienteDelCliente()
     
     do
     {
-        printf("\n--Menu Cliente (Expediente)--\n");
-        printf("\n1.1 Crear expediente");
-        printf("\n1.2 Consultarla e imprimir expediente");
-        printf("\n1.3 salir\n");
-        printf("\nPor favor ingrese una opcion: ");
+        printf("\n__EXPEDIENTE CLIENTE__\n");
+        printf("\n1. Crear expediente.");
+        printf("\n2. Consultarla e imprimir expediente.");
+        printf("\n3. Volver al menu principal.\n");
+        printf("\nPor favor, ingrese una opcion: ");
         scanf("%i", &opcionMenuCuentaCliente);
 
         switch (opcionMenuCuentaCliente)
         {
         case 1:
-            printf("\n--Creacion de expediente del usuario--\n");
-            printf("\nPor favor, ingrese su direccion: ");
-            scanf("%s", &cuenta.direccion);
-            printf("\nPor favor, ingrese su correo electronico: ");
+            printf("\n_CREAR EXPEDIENTE_");
+            printf("\nIngrese su correo electronico: ");
             scanf("%s", &cuenta.correo);
-            printf("\nPor favor, ingrese su numero telefonico: ");
+            printf("\nIngrese su numero telefonico: ");
             scanf("%s", &cuenta.telefono);
-            printf("\nPor favor, ingrese su estatus civil: ");
+            printf("\nIngrese su estatus civil: ");
             scanf("%s", &cuenta.estatusCivil);
-            printf("\nPor favor, la cantidad inicial de dinero a agendar a su cuenta: ");
+            printf("\nIngrese la cantidad inicial de dinero a agendar a su cuenta: ");
             scanf("%f", &cuenta.patrimonio);           
             break;
         
         case 2:
-            printf("\n--Consulta del expediente--\n");
-            printf("Direccion: %s\n", cuenta.direccion);
-            printf("Correo electronico: %s\n", cuenta.correo);
-            printf("Numero telefonico: %s\n", cuenta.telefono);
-            printf("Estatus civil: %s\n", cuenta.estatusCivil);
-            printf("Fondo inicial agregado:%.2fBs\n", cuenta.patrimonio);
+            printf("\n_CONSULTA EXPEDIENTE_");
+            printf("\nNumero telefonico: %s.", cuenta.telefono);
+            printf("\nEstatus civil: %s.", cuenta.estatusCivil);
+            printf("\nFondo inicial agregado:%.2fBs.", cuenta.patrimonio);
             break;
         
         case 3:
-            printf("\nSaliendo...");
+            printf("\nVolviendo al menu principal...\n");
             break;
         
         default:
-            printf("\nOpcion Invalida");
+            printf("\nLa opcion introducida no es valida, intentelo de nuevo.");
             break;
         }
     } while (opcionMenuCuentaCliente !=3);
@@ -288,16 +294,16 @@ void resumenActividad()
     do
     {
         printf("\n__RESUMEN DE ACTIVIDAD BANCARIA__\n");
-        printf("\n1.1 Resumen Semanal.");
-        printf("\n1.2 Resumen Mensual.");
-        printf("\n1.3 Volver al menu principal.\n");
-        printf("\nPor favor ingrese una opcion: ");
+        printf("\n1. Resumen Semanal.");
+        printf("\n2. Resumen Mensual.");
+        printf("\n3. Volver al menu principal.\n");
+        printf("\nPor favor, ingrese una opcion: ");
         scanf("%i", &resumenDeActividad);
 
         switch (resumenDeActividad)
         {        
         case 1:
-            printf("\n__RESUMEN SEMANAL__\n");
+            printf("\n_RESUMEN SEMANAL_");
             printf("\n_[22/05/2023] al [28/05/2023]\n");
         
             printf("\n[25/05/2003] Creacion de Expediente Cliente: C.I: %i.", cuenta.cedula);
@@ -308,7 +314,7 @@ void resumenActividad()
             break;
         
         case 2:
-            printf("\n__RESUMEN MENSUAL__");
+            printf("\n_RESUMEN MENSUAL_");
             printf("\n_[01/05/2023] al [31/05/2023]\n");
 
             printf("\n_SEMANA [22/05/2023] a [28/05/2023]");
@@ -339,11 +345,11 @@ void resumenActividad()
             break;
         
         case 3:
-            printf("\nSaliendo...");
+            printf("\nVolviendo al menu principal...\n");
             break;
         
         default:
-            printf("\nOpcion Invalida");
+            printf("\nLa opcion introducida no es valida, intentelo de nuevo.");
             break;
         }
     
@@ -354,39 +360,128 @@ void resumenActividad()
 void menuPagos()
 {
     int opcionMenuPagos = 0;
+    int cedulaPropia;
+    int cedulaTercero;
+    char telefonoPropio[50];
+    char telefonoTercero[50];
     float monto;
+    int salida;
 
-    printf("\n--Menu de Pagos--\n");
-    printf("\n1. Pago Movil (Bolivares)");
-    printf("\n2. Transferencia (Bolivares)");
-    printf("\n3. Pago en Efectivo (Bolivares)");
-    printf("\nIngrese una opcion: ");
+    int opcionMenuEfectivo = 0;
+    float montoDolares;
+
+    do
+    {
+     
+    printf("\n__PAGOS__\n");
+    printf("\n1. Pago Movil.");
+    printf("\n2. Transferencia.");
+    printf("\n3. Pago en Efectivo.");
+    printf("\n4. Volver al menu principal.\n");
+    printf("\nPor favor, ingrese una opcion: ");
     scanf("%i", &opcionMenuPagos);
 
-    switch (opcionMenuPagos)
-    {
+        switch (opcionMenuPagos)
+        {
         case 1:
-            printf("\nIngrese el monto del pago en bolivares: ");
+            printf("\n_PAGO MOVIL_");
+            printf("\nIngrese ingrese el telefono asociado a su cuenta: ");
+            scanf("%s", &telefonoPropio);
+            printf("\nIngrese ingrese el telefono asociado a la cuenta que desea hacer el Pago Movil: ");
+            scanf("%s", &telefonoTercero);
+            printf("\nIngrese el monto a pagar: ");
             scanf("%f", &monto);
+            
             pagos(monto);
+            
+            printf("\nPAGO MOVIL DE: %.2fbs", monto);
+            printf("\nTELEFONO EMISOR: %s.", telefonoPropio);
+            printf("\nTELEFONO RECEPTOR: %s.", telefonoTercero);
+            printf("\nSu transferencia fue realizada con EXITO!");
             break;
         
         case 2:
-            printf("\nIngrese el monto de la transferencia en bolivares: ");
+            printf("\n_TRANSFERENCIA_");
+            printf("\nIngrese ingrese la cedula asociada a su cuenta: ");
+            scanf("%i", &cedulaPropia);
+            printf("\nIngrese ingrese la cedula asociada a la cuenta que desea hacer la Transferencia: ");
+            scanf("%i", &cedulaTercero);
+            printf("\nIngrese el monto a pagar: ");
             scanf("%f", &monto);
+            
             pagos(monto);
+            
+            printf("\nTRANSFERENCIA DE: %.2fbs", monto);
+            printf("\nCEDULA EMISOR: %i", cedulaPropia);
+            printf("\nCEDULA RECEPTOR: %i", cedulaTercero);
+            printf("\nSu transferencia fue realizada con EXITO!");
             break;
         
         case 3:
-            printf("\nIngrese el monto del pago en efectivo en bolivares: ");
-            scanf("%f", &monto);
-            pagos(monto);
+            
+            printf("\n_PAGO EN EFECTIVO_");
+            printf("\n1. Bolivares.");
+            printf("\n2. Dolares.");
+            printf("\nPor favor, ingrese una opcion: ");
+            scanf("%i", &opcionMenuEfectivo);
+
+                switch (opcionMenuEfectivo)
+                {  
+                case 1:
+                    printf("\nPAGO EN EFECTIVO (BOLIVARES)");
+                    printf("\nIngrese ingrese la cedula asociada a su cuenta: ");
+                    scanf("%i", &cedulaPropia);
+                    printf("\nIngrese ingrese la cedula asociada a la cuenta que desea hacer el pago en Efectivo: ");
+                    scanf("%i", &cedulaTercero);
+                    printf("\nIngrese el monto a pagar en bolivares: ");
+                    scanf("%f", &monto);
+
+                    printf("\nIntroduzca el efectivo en la maquina y confirme para continuar: ");
+                    printf("\nCONTINUAR INTRODUCIENDO CUALQUIER NUMERO.");
+                    scanf("%i", &salida);
+                    
+                    pagos(monto);
+
+                    printf("\nPAGO EN EFECTIVO DE: %.2fbs.", monto);
+                    printf("\nCEDULA EMISOR: %i.", cedulaPropia);
+                    printf("\nCEDULA RECEPTOR: %i.", cedulaTercero);
+                    printf("\nSu pago en efectivo fue realizado con EXITO!");
+                    break;
+        
+                case 2:
+                    printf("\nPAGO EN EFECTIVO (DOLARES).");
+                    printf("\nIngrese ingrese la cedula asociada a su cuenta: ");
+                    scanf("%i", &cedulaPropia);
+                    printf("\nIngrese ingrese la cedula asociada a la cuenta que desea hacer el pago en Efectivo: ");
+                    scanf("%i", &cedulaTercero);
+                    printf("\nIngrese el monto a pagar en dolares: ");
+                    scanf("%f", &montoDolares);
+                 
+                    printf("\nIntroduzca el efectivo en la maquina y confirme para continuar: ");
+                    printf("\nCONTINUAR INTRODUCIENDO CUALQUIER NUMERO.");
+                    scanf("%i", &salida);
+                    
+                    printf("\nPAGO EN EFECTIVO DE: %.2f$.", montoDolares);
+                    printf("\nCEDULA EMISOR: %i.", cedulaPropia);
+                    printf("\nCEDULA RECEPTOR: %i.", cedulaTercero);
+                    printf("\nSu pago en efectivo fue realizado con EXITO!");
+                    break;
+        
+                default:
+                    printf("\nOpcion Invalida");
+                    break;
+                }
+            break;
+        
+        case 4:
+            printf("\nVolviendo al menu principal...\n");
             break;
         
         default:
-            printf("\nOpcion Invalida");
+            printf("\nLa opcion introducida no es valida, intentelo de nuevo.");
             break;
-    }
+        }
+    } while (opcionMenuPagos !=4);
 }
 
 
@@ -394,12 +489,11 @@ void pagos(float monto)
 {
     if (monto > cuenta.patrimonio)
     {
-        printf("\nMonto insuficiente para realizar dicho pago\n");
+        printf("\nMonto insuficiente para realizar la operacion.\n");
     }
     else
     {
         cuenta.patrimonio -= monto;
-        printf("\nPago realizado con exito!");
     }
 }
 
@@ -414,17 +508,17 @@ void servicios()
     do
     {
         printf("\n__SERVICIOS__\n");
-        printf("\n1.1 Renta Telefonica.");
-        printf("\n1.2 Servicio de Agua.");
-        printf("\n1.3 Servicio de Luz.");
-        printf("\n1.4 Volver al menu principal.\n");
-        printf("\nPor favor ingrese una opcion: ");
+        printf("\n1. Renta Telefonica.");
+        printf("\n2. Servicio de Agua.");
+        printf("\n3. Servicio de Luz.");
+        printf("\n4. Volver al menu principal.\n");
+        printf("\nPor favor, ingrese una opcion: ");
         scanf("%i", &serviciosCobros);
 
         switch (serviciosCobros)
         {       
         case 1:
-            printf("\n__RENTA TELEFONICA__\n");
+            printf("\n_RENTA TELEFONICA_");
 
             printf("\nIngrese el numero de telefono que desea recargar: ");
             scanf("%s", &telefono);
@@ -444,14 +538,14 @@ void servicios()
                 else
                 {
                 cuenta.patrimonio -= monto;
-                printf("\nRECARGA DE: %.2f", monto);
-                printf("\nNUMERO TELEFONICO: %s", telefono);
+                printf("\nRECARGA DE: %.2fbs.", monto);
+                printf("\nNUMERO TELEFONICO: %s.", telefono);
                 printf("\nSu recarga fue realizada con EXITO!");
                 }
             break;
         
         case 2:
-            printf("\n__SERVICIO DE AGUA__\n");
+            printf("\n_SERVICIO DE AGUA_");
 
             printf("\nIngrese el numero de cedula asociado a su contrato: ");
             scanf("%i", &cedula);
@@ -472,14 +566,14 @@ void servicios()
                 else
                 {
                 cuenta.patrimonio -= monto;
-                printf("\nPAGO DE AGUA DE: %.2f", monto);
-                printf("\nNUMERO DE CEDULA ASOCIADO: %i", cedula);
+                printf("\nPAGO DE AGUA DE: %.2fbs.", monto);
+                printf("\nNUMERO DE CEDULA ASOCIADO: %i.", cedula);
                 printf("\nSu pago de servicio fue realizado con EXITO!");
                 }
             break;
         
         case 3:
-            printf("\n__SERVICIO DE LUZ__\n");
+            printf("\n_SERVICIO DE LUZ_");
 
             printf("\nIngrese el numero de cedula asociado a su contrato: ");
             scanf("%i", &cedula);
@@ -499,18 +593,18 @@ void servicios()
                 }
                 else{
                 cuenta.patrimonio -= monto;
-                printf("\nPAGO DE LUZ DE: %.2f", monto);
-                printf("\nNUMERO DE CEDULA ASOCIADO: %i", cedula);
+                printf("\nPAGO DE LUZ DE: %.2fbs.", monto);
+                printf("\nNUMERO DE CEDULA ASOCIADO: %i.", cedula);
                 printf("\nSu pago de servicio fue realizado con EXITO!");
                 }
             break;
 
         case 4:
-            printf("\nSaliendo...\n");
+            printf("\nVolviendo al menu principal...\n");
             break;
         
         default:
-            printf("\nOpcion Invalida\n");
+            printf("\nLa opcion introducida no es valida, intentelo de nuevo.");
             break;
         }
     
@@ -531,17 +625,17 @@ void retiros()
     do
     {
         printf("\n__RETIROS__\n");
-        printf("\n1.1 Retiro Cliente.");
-        printf("\n1.2 Retiro Bancario.");
-        printf("\n1.3 Volver al menu principal.\n");
-        printf("\nPor favor ingrese una opcion: ");
+        printf("\n1. Retiro Cliente.");
+        printf("\n2. Retiro Bancario.");
+        printf("\n3. Volver al menu principal.\n");
+        printf("\nPor favor, ingrese una opcion: ");
         scanf("%i", &retirosCuenta);
 
         switch (retirosCuenta)
         {
         
         case 1:
-            printf("\n__RETIRO CLIENTE_\n");
+            printf("\n_RETIRO CLIENTE_");
             printf("\nIngrese ingrese la cedula asociada a su cuenta: ");
             scanf("%i", &cedula);
             printf("\nIngrese el monto que desea retirar de su cuenta: ");
@@ -553,15 +647,15 @@ void retiros()
                 }
                 else{
                 cuenta.patrimonio -= monto;
-                printf("\nMONTO A RETIRAR: %.2f", monto);
-                printf("\nNUMERO DE CEDULA ASOCIADO: %i", cedula);
+                printf("\nMONTO A RETIRAR: %.2fbs.", monto);
+                printf("\nNUMERO DE CEDULA ASOCIADO: %i.", cedula);
                 printf("\nSu retiro de fondos fue realizado con EXITO!");
                 }
 
             break;
         
         case 2:
-            printf("\n__RETIRO BANCARIO__\n");
+            printf("\n_RETIRO BANCARIO_");
             printf("\nIngrese la clave especial asociada a los fondos bancarios: ");
             scanf("%s", &claveBanco);
             printf("\nIngrese el monto que desea retirar de los fondos bancarios: ");
@@ -574,19 +668,19 @@ void retiros()
                 }
                 else{
                 montoBanco -= monto;
-                printf("\nMONTO A RETIRAR: %.2f", monto);
+                printf("\nMONTO A RETIRAR: %.2fbs.", monto);
                 printf("\nSu retiro de fondos bancarios fue realizado con EXITO!");
                 }
 
             break;
         
         case 3:
-            printf("\nSaliendo...\n");
+            printf("\nVolviendo al menu principal...\n");
 
             break;
 
         default:
-            printf("\nOpcion Invalida\n");
+            printf("\nLa opcion introducida no es valida, intentelo de nuevo.");
             break;
         }
     
@@ -623,6 +717,6 @@ void consultarImprimirMovimientos()
             break;
         
         default:
-            printf("Opción inválida\n");
+            printf("\nLa opcion introducida no es valida, intentelo de nuevo.");
     }
 }
