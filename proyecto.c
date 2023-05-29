@@ -20,28 +20,22 @@ struct cuentasBancarias
     char estatusCivil[50];
     char telefono[50];
     float patrimonio;
+
+    /* Movimientos */
+    float movimientos[50];
+    int nMovimientos;
 };
 
-struct movimientoBanco 
+struct banco
 {
-    char fecha[50];
-    float monto;
+    float patrimonio;
 };
 
-struct movimientoCliente 
-{
-    char fecha[50];
-    float monto;
-};
+struct banco banco;
+
 
 
 struct cuentasBancarias cuenta;
-
-struct movimientoBanco movimientosBanco[MAX_MOVIMIENTOS];
-int totalMovimientosBanco = 0;
-
-struct movimientoCliente movimientosCliente[MAX_MOVIMIENTOS];
-int totalMovimientosCliente = 0;
 
 void cuentaCliente();
 void expedienteDelCliente();
@@ -55,6 +49,7 @@ void consultarImprimirMovimientos();
 
 int main()
 {
+    cuenta.nMovimientos = 0;
     cuenta.fechaNacimiento = 9999;
 
     int opcionMenu = 0;
@@ -86,7 +81,7 @@ int main()
             printf("\nBienvenido al sistema de BanLMEM:]\n");
             printf("\n___MENU PRINCIPAL___");
             printf("\n1.- Cuenta Cliente.");
-            printf("\n2.- Expediente Cliente."); 
+            printf("\n2.- Expediente Cliente.");
             printf("\n3.- Productos y Requisitos.");
             printf("\n4.- Resumen de Actividad.");
             printf("\n5.- Servicios.");
@@ -141,10 +136,9 @@ int main()
             }
         }
     } while (opcionMenu < 9);
-    
+
     return 0;
 }
-
 
 void cuentaCliente()
 {
@@ -182,25 +176,25 @@ void cuentaCliente()
                 break;
             }
             break;
-        
+
         case 2:
             if (cuenta.fechaNacimiento < 2005)
             {
-            printf("\n_CONSULTA CUENTA_\n");
-            printf("\nCedula: %i.", cuenta.cedula);
-            printf("\nNombre Completo: %s %s.", cuenta.nombre, cuenta.apellido);
-            printf("\nFecha de nacimiento: %i/%i/%i.\n", cuenta.diaNacimiento, cuenta.mesNacimiento, cuenta.fechaNacimiento);
-            break;
+                printf("\n_CONSULTA CUENTA_\n");
+                printf("\nCedula: %i.", cuenta.cedula);
+                printf("\nNombre Completo: %s %s.", cuenta.nombre, cuenta.apellido);
+                printf("\nFecha de nacimiento: %i/%i/%i.\n", cuenta.diaNacimiento, cuenta.mesNacimiento, cuenta.fechaNacimiento);
+                break;
             }
             else
             {
-            printf("\nAun no ha registrado un cliente en nuestros sistemas.\n");
+                printf("\nAun no ha registrado un cliente en nuestros sistemas.\n");
             }
 
         case 3:
             printf("\nVolviendo al menu principal...\n");
             break;
-        
+
         default:
             printf("\nLa opcion introducida no es valida, intentelo de nuevo.");
             break;
@@ -208,11 +202,10 @@ void cuentaCliente()
     } while (opcionMenuCuentaCliente != 3);
 }
 
-
 void expedienteDelCliente()
 {
     int opcionMenuCuentaCliente = 0;
-    
+
     do
     {
         printf("\n__EXPEDIENTE CLIENTE__\n");
@@ -233,27 +226,26 @@ void expedienteDelCliente()
             printf("\nIngrese su estatus civil: ");
             scanf("%s", &cuenta.estatusCivil);
             printf("\nIngrese la cantidad inicial de dinero a agendar a su cuenta: ");
-            scanf("%f", &cuenta.patrimonio);           
+            scanf("%f", &cuenta.patrimonio);
             break;
-        
+
         case 2:
             printf("\n_CONSULTA EXPEDIENTE_");
             printf("\nNumero telefonico: %s.", cuenta.telefono);
             printf("\nEstatus civil: %s.", cuenta.estatusCivil);
             printf("\nFondo inicial agregado:%.2fBs.", cuenta.patrimonio);
             break;
-        
+
         case 3:
             printf("\nVolviendo al menu principal...\n");
             break;
-        
+
         default:
             printf("\nLa opcion introducida no es valida, intentelo de nuevo.");
             break;
         }
-    } while (opcionMenuCuentaCliente !=3);
+    } while (opcionMenuCuentaCliente != 3);
 }
-
 
 void productosRequisitos()
 {
@@ -286,7 +278,6 @@ void productosRequisitos()
     printf("\n -Copia del documento constitutivo de la empresa.\n");
 }
 
-
 void resumenActividad()
 {
     int resumenDeActividad = 0;
@@ -301,18 +292,18 @@ void resumenActividad()
         scanf("%i", &resumenDeActividad);
 
         switch (resumenDeActividad)
-        {        
+        {
         case 1:
             printf("\n_RESUMEN SEMANAL_");
             printf("\n_[22/05/2023] al [28/05/2023]\n");
-        
+
             printf("\n[25/05/2003] Creacion de Expediente Cliente: C.I: %i.", cuenta.cedula);
-            printf("\n[25/05/2003] Creacion de Cuenta Cliente: C.I: %i.\n", cuenta.cedula);           
+            printf("\n[25/05/2003] Creacion de Cuenta Cliente: C.I: %i.\n", cuenta.cedula);
             printf("\n[23/05/2003] Creacion de Expediente Cliente: C.I: 6359458.\n");
             printf("\n[22/05/2003] Creacion de Cuenta Cliente: C.I: 6359458.");
             printf("\n[22/05/2003] Solicitud de Tarjeta de Debito: C.I: 12698364.\n");
             break;
-        
+
         case 2:
             printf("\n_RESUMEN MENSUAL_");
             printf("\n_[01/05/2023] al [31/05/2023]\n");
@@ -323,7 +314,7 @@ void resumenActividad()
             printf("\n[23/05/2003] Creacion de Expediente Cliente: C.I: 6359458.");
             printf("\n[22/05/2003] Creacion de Cuenta Cliente: C.I: 6359458.");
             printf("\n[22/05/2003] Solicitud de Tarjeta de Debito: C.I: 12698364.\n");
-            
+
             printf("\n_SEMANA [15/05/2023] a 21/05/2023]");
             printf("\n[19/05/2003] Creacion de Cuenta Juridica: R.I.F: 0036841287.");
             printf("\n[19/05/2003] Cierre de Cuenta Cliente: C.I: 18659354.");
@@ -336,26 +327,25 @@ void resumenActividad()
             printf("\n[13/05/2003] Creacion de Expediente Cliente: R.I.F: 11697364.");
             printf("\n[13/05/2003] Cierre de Cuenta Cliente: C.I: 28458731.");
             printf("\n[12/05/2003] Creacion de Expediente Cliente: C.I: 22489123.\n");
-            
+
             printf("\n_SEMANA [01/05/2023] a [07/05/2023]");
             printf("\n[07/05/2003] Creacion de Expediente Juridico: R.I.F: 0254003964.");
             printf("\n[05/05/2003] Creacion de Cuenta Cliente: C.I: 22489123.");
             printf("\n[04/05/2003] Creacion de Cuenta Juridica: R.I.F: 0254003964.");
             printf("\n[04/05/2003] Creacion de Cuenta Cliente: C.I: 11697364.\n");
             break;
-        
+
         case 3:
             printf("\nVolviendo al menu principal...\n");
             break;
-        
+
         default:
             printf("\nLa opcion introducida no es valida, intentelo de nuevo.");
             break;
         }
-    
-    }   while (resumenDeActividad !=3);
-}
 
+    } while (resumenDeActividad != 3);
+}
 
 void menuPagos()
 {
@@ -372,14 +362,14 @@ void menuPagos()
 
     do
     {
-     
-    printf("\n__PAGOS__\n");
-    printf("\n1. Pago Movil.");
-    printf("\n2. Transferencia.");
-    printf("\n3. Pago en Efectivo.");
-    printf("\n4. Volver al menu principal.\n");
-    printf("\nPor favor, ingrese una opcion: ");
-    scanf("%i", &opcionMenuPagos);
+
+        printf("\n__PAGOS__\n");
+        printf("\n1. Pago Movil.");
+        printf("\n2. Transferencia.");
+        printf("\n3. Pago en Efectivo.");
+        printf("\n4. Volver al menu principal.\n");
+        printf("\nPor favor, ingrese una opcion: ");
+        scanf("%i", &opcionMenuPagos);
 
         switch (opcionMenuPagos)
         {
@@ -391,15 +381,12 @@ void menuPagos()
             scanf("%s", &telefonoTercero);
             printf("\nIngrese el monto a pagar: ");
             scanf("%f", &monto);
-            
-            pagos(monto);
-            
             printf("\nPAGO MOVIL DE: %.2fbs", monto);
             printf("\nTELEFONO EMISOR: %s.", telefonoPropio);
             printf("\nTELEFONO RECEPTOR: %s.", telefonoTercero);
-            printf("\nSu transferencia fue realizada con EXITO!");
+            pagos(monto);
             break;
-        
+
         case 2:
             printf("\n_TRANSFERENCIA_");
             printf("\nIngrese ingrese la cedula asociada a su cuenta: ");
@@ -408,82 +395,78 @@ void menuPagos()
             scanf("%i", &cedulaTercero);
             printf("\nIngrese el monto a pagar: ");
             scanf("%f", &monto);
-            
-            pagos(monto);
-            
             printf("\nTRANSFERENCIA DE: %.2fbs", monto);
             printf("\nCEDULA EMISOR: %i", cedulaPropia);
             printf("\nCEDULA RECEPTOR: %i", cedulaTercero);
-            printf("\nSu transferencia fue realizada con EXITO!");
+            pagos(monto);
             break;
-        
+
         case 3:
-            
+
             printf("\n_PAGO EN EFECTIVO_");
             printf("\n1. Bolivares.");
             printf("\n2. Dolares.");
             printf("\nPor favor, ingrese una opcion: ");
             scanf("%i", &opcionMenuEfectivo);
 
-                switch (opcionMenuEfectivo)
-                {  
-                case 1:
-                    printf("\nPAGO EN EFECTIVO (BOLIVARES)");
-                    printf("\nIngrese ingrese la cedula asociada a su cuenta: ");
-                    scanf("%i", &cedulaPropia);
-                    printf("\nIngrese ingrese la cedula asociada a la cuenta que desea hacer el pago en Efectivo: ");
-                    scanf("%i", &cedulaTercero);
-                    printf("\nIngrese el monto a pagar en bolivares: ");
-                    scanf("%f", &monto);
+            switch (opcionMenuEfectivo)
+            {
+            case 1:
+                printf("\nPAGO EN EFECTIVO (BOLIVARES)");
+                printf("\nIngrese ingrese la cedula asociada a su cuenta: ");
+                scanf("%i", &cedulaPropia);
+                printf("\nIngrese ingrese la cedula asociada a la cuenta que desea hacer el pago en Efectivo: ");
+                scanf("%i", &cedulaTercero);
+                printf("\nIngrese el monto a pagar en bolivares: ");
+                scanf("%f", &monto);
 
-                    printf("\nIntroduzca el efectivo en la maquina y confirme para continuar: ");
-                    printf("\nCONTINUAR INTRODUCIENDO CUALQUIER NUMERO.");
-                    scanf("%i", &salida);
-                    
-                    pagos(monto);
+                printf("\nIntroduzca el efectivo en la maquina y confirme para continuar: ");
+                printf("\nCONTINUAR INTRODUCIENDO CUALQUIER NUMERO.");
+                scanf("%i", &salida);
 
-                    printf("\nPAGO EN EFECTIVO DE: %.2fbs.", monto);
-                    printf("\nCEDULA EMISOR: %i.", cedulaPropia);
-                    printf("\nCEDULA RECEPTOR: %i.", cedulaTercero);
-                    printf("\nSu pago en efectivo fue realizado con EXITO!");
-                    break;
-        
-                case 2:
-                    printf("\nPAGO EN EFECTIVO (DOLARES).");
-                    printf("\nIngrese ingrese la cedula asociada a su cuenta: ");
-                    scanf("%i", &cedulaPropia);
-                    printf("\nIngrese ingrese la cedula asociada a la cuenta que desea hacer el pago en Efectivo: ");
-                    scanf("%i", &cedulaTercero);
-                    printf("\nIngrese el monto a pagar en dolares: ");
-                    scanf("%f", &montoDolares);
-                 
-                    printf("\nIntroduzca el efectivo en la maquina y confirme para continuar: ");
-                    printf("\nCONTINUAR INTRODUCIENDO CUALQUIER NUMERO.");
-                    scanf("%i", &salida);
-                    
-                    printf("\nPAGO EN EFECTIVO DE: %.2f$.", montoDolares);
-                    printf("\nCEDULA EMISOR: %i.", cedulaPropia);
-                    printf("\nCEDULA RECEPTOR: %i.", cedulaTercero);
-                    printf("\nSu pago en efectivo fue realizado con EXITO!");
-                    break;
-        
-                default:
-                    printf("\nOpcion Invalida");
-                    break;
-                }
+                pagos(monto);
+
+                printf("\nPAGO EN EFECTIVO DE: %.2fbs.", monto);
+                printf("\nCEDULA EMISOR: %i.", cedulaPropia);
+                printf("\nCEDULA RECEPTOR: %i.", cedulaTercero);
+                printf("\nSu pago en efectivo fue realizado con EXITO!");
+                break;
+
+            case 2:
+                printf("\nPAGO EN EFECTIVO (DOLARES).");
+                printf("\nIngrese ingrese la cedula asociada a su cuenta: ");
+                scanf("%i", &cedulaPropia);
+                printf("\nIngrese ingrese la cedula asociada a la cuenta que desea hacer el pago en Efectivo: ");
+                scanf("%i", &cedulaTercero);
+                printf("\nIngrese el monto a pagar en dolares: ");
+                scanf("%f", &montoDolares);
+
+                printf("\nIntroduzca el efectivo en la maquina y confirme para continuar: ");
+                printf("\nCONTINUAR INTRODUCIENDO CUALQUIER NUMERO.");
+                scanf("%i", &salida);
+
+                printf("\nPAGO EN EFECTIVO DE: %.2f$.", montoDolares);
+                printf("\nCEDULA EMISOR: %i.", cedulaPropia);
+                printf("\nCEDULA RECEPTOR: %i.", cedulaTercero);
+                printf("\nSu pago en efectivo fue realizado con EXITO!");
+                break;
+
+            default:
+                printf("\nOpcion Invalida");
+                break;
+            }
             break;
-        
+
         case 4:
             printf("\nVolviendo al menu principal...\n");
             break;
-        
+
         default:
             printf("\nLa opcion introducida no es valida, intentelo de nuevo.");
             break;
         }
-    } while (opcionMenuPagos !=4);
+    } while (opcionMenuPagos != 4);
 }
-
 
 void pagos(float monto)
 {
@@ -493,17 +476,19 @@ void pagos(float monto)
     }
     else
     {
+        printf("\nSu pago fue realizada con EXITO!");
         cuenta.patrimonio -= monto;
+        cuenta.movimientos[cuenta.nMovimientos] = monto;
+        cuenta.nMovimientos++;
     }
 }
 
-
 void servicios()
 {
-        int serviciosCobros = 0;
-        char telefono[50];
-        float monto;
-        int cedula;
+    int serviciosCobros = 0;
+    char telefono[50];
+    float monto;
+    int cedula;
 
     do
     {
@@ -516,7 +501,7 @@ void servicios()
         scanf("%i", &serviciosCobros);
 
         switch (serviciosCobros)
-        {       
+        {
         case 1:
             printf("\n_RENTA TELEFONICA_");
 
@@ -527,23 +512,25 @@ void servicios()
             printf("\n-30bs.");
             printf("\n-50bs.");
             printf("\n-100bs.");
-            
+
             printf("\nIngrese uno de los montos disponibles: ");
             scanf("%f", &monto);
-            
-                if(monto > cuenta.patrimonio)
-                {
+
+            if (monto > cuenta.patrimonio)
+            {
                 printf("\nMonto insuficiente para realizar la recarga.\n");
-                }
-                else
-                {
+            }
+            else
+            {
                 cuenta.patrimonio -= monto;
+                cuenta.movimientos[cuenta.nMovimientos] = monto;
+                cuenta.nMovimientos++;
                 printf("\nRECARGA DE: %.2fbs.", monto);
                 printf("\nNUMERO TELEFONICO: %s.", telefono);
                 printf("\nSu recarga fue realizada con EXITO!");
-                }
+            }
             break;
-        
+
         case 2:
             printf("\n_SERVICIO DE AGUA_");
 
@@ -555,23 +542,25 @@ void servicios()
             printf("\n-150bs.");
             printf("\n-300bs.");
             printf("\n-500bs.");
-            
+
             printf("\nIngrese uno de los montos disponibles: ");
             scanf("%f", &monto);
 
-                if(monto > cuenta.patrimonio)
-                {
+            if (monto > cuenta.patrimonio)
+            {
                 printf("\nMonto insuficiente para realizar el pago.\n");
-                }
-                else
-                {
+            }
+            else
+            {
                 cuenta.patrimonio -= monto;
+                cuenta.movimientos[cuenta.nMovimientos] = monto;
+                cuenta.nMovimientos++;
                 printf("\nPAGO DE AGUA DE: %.2fbs.", monto);
                 printf("\nNUMERO DE CEDULA ASOCIADO: %i.", cedula);
                 printf("\nSu pago de servicio fue realizado con EXITO!");
-                }
+            }
             break;
-        
+
         case 3:
             printf("\n_SERVICIO DE LUZ_");
 
@@ -583,44 +572,47 @@ void servicios()
             printf("\n-150bs.");
             printf("\n-300bs.");
             printf("\n-500bs.");
-            
+
             printf("\nIngrese uno de los montos disponibles: ");
             scanf("%f", &monto);
 
-                if(monto > cuenta.patrimonio)
-                {
+            if (monto > cuenta.patrimonio)
+            {
                 printf("\nMonto insuficiente para realizar el pago.\n");
-                }
-                else{
+            }
+            else
+            {
                 cuenta.patrimonio -= monto;
+                cuenta.movimientos[cuenta.nMovimientos] = monto;
+                cuenta.nMovimientos++;
                 printf("\nPAGO DE LUZ DE: %.2fbs.", monto);
                 printf("\nNUMERO DE CEDULA ASOCIADO: %i.", cedula);
                 printf("\nSu pago de servicio fue realizado con EXITO!");
-                }
+            }
             break;
 
         case 4:
             printf("\nVolviendo al menu principal...\n");
             break;
-        
+
         default:
             printf("\nLa opcion introducida no es valida, intentelo de nuevo.");
             break;
         }
-    
-    }   while (serviciosCobros !=4);
+
+    } while (serviciosCobros != 4);
 }
 
 void retiros()
 {
     int retirosCuenta = 0;
-        float monto;
-        float montoBanco;
-        int cedula;
-        char claveBanco;
+    float monto;
+    float montoBanco;
+    int cedula;
+    char claveBanco;
 
-        montoBanco = 10000000;
-        claveBanco = " BanlmEM10 ";
+    banco.patrimonio = 10000000;
+    claveBanco = " BanlmEM10 ";
 
     do
     {
@@ -633,7 +625,7 @@ void retiros()
 
         switch (retirosCuenta)
         {
-        
+
         case 1:
             printf("\n_RETIRO CLIENTE_");
             printf("\nIngrese ingrese la cedula asociada a su cuenta: ");
@@ -641,19 +633,22 @@ void retiros()
             printf("\nIngrese el monto que desea retirar de su cuenta: ");
             scanf("%f", &monto);
 
-            if(monto > cuenta.patrimonio)
-                {
+            if (monto > cuenta.patrimonio)
+            {
                 printf("\nSaldo insuficiente para realizar el retiro.\n");
-                }
-                else{
+            }
+            else
+            {
                 cuenta.patrimonio -= monto;
+                cuenta.movimientos[cuenta.nMovimientos] = monto;
+                cuenta.nMovimientos++;
                 printf("\nMONTO A RETIRAR: %.2fbs.", monto);
                 printf("\nNUMERO DE CEDULA ASOCIADO: %i.", cedula);
                 printf("\nSu retiro de fondos fue realizado con EXITO!");
-                }
+            }
 
             break;
-        
+
         case 2:
             printf("\n_RETIRO BANCARIO_");
             printf("\nIngrese la clave especial asociada a los fondos bancarios: ");
@@ -661,19 +656,19 @@ void retiros()
             printf("\nIngrese el monto que desea retirar de los fondos bancarios: ");
             scanf("%f", &monto);
 
-
-            if(monto > montoBanco)
-                {
+            if (monto > banco.patrimonio)
+            {
                 printf("\nSaldo insuficiente para realizar el retiro.\n");
-                }
-                else{
-                montoBanco -= monto;
+            }
+            else
+            {
+                banco.patrimonio -= monto;
                 printf("\nMONTO A RETIRAR: %.2fbs.", monto);
                 printf("\nSu retiro de fondos bancarios fue realizado con EXITO!");
-                }
+            }
 
             break;
-        
+
         case 3:
             printf("\nVolviendo al menu principal...\n");
 
@@ -683,40 +678,39 @@ void retiros()
             printf("\nLa opcion introducida no es valida, intentelo de nuevo.");
             break;
         }
-    
-    }   while (retirosCuenta !=3);
+
+    } while (retirosCuenta != 3);
 }
 
-void consultarImprimirMovimientos() 
+void consultarImprimirMovimientos()
 {
     int opcion;
+    do
+    {
 
-    printf("\n---- Menú de Consulta de Movimientos ----\n");
-    printf("1. Movimientos del banco\n");
-    printf("2. Movimientos de la cuenta del cliente\n");
-    printf("Ingrese su opción: ");
-    scanf("%d", &opcion);
+        printf("\n---- Menú de Consulta de Movimientos ----\n");
+        printf("1. Movimientos del banco\n");
+        printf("2. Movimientos de la cuenta del cliente\n");
+        printf("Ingrese su opción: ");
+        scanf("%d", &opcion);
 
-    switch (opcion) {
+        switch (opcion)
+        {
         case 1:
             printf("\n--Consulta e impresión de movimientos del banco--\n");
-            
-            for (int i = 0; i < totalMovimientosBanco; i++) 
-            {
-                printf("Fecha: %s, Monto: %.2f\n", movimientosBanco[i].fecha, movimientosBanco[i].monto);
-            }
+            printf("-%.2f\n", banco.patrimonio);
             break;
-        
         case 2:
             printf("\n--Consulta e impresión de movimientos de la cuenta del cliente--\n");
-            
-            for (int i = 0; i < totalMovimientosCliente; i++) 
+
+            for (int i = 0; i < cuenta.nMovimientos; i++)
             {
-                printf("Fecha: %s, Monto: %.2f\n", movimientosCliente[i].fecha, movimientosCliente[i].monto);
+                printf("-%.2f\n", cuenta.movimientos[i]);
             }
             break;
-        
+
         default:
             printf("\nLa opcion introducida no es valida, intentelo de nuevo.");
-    }
+        }
+    } while (opcion != 3);
 }
